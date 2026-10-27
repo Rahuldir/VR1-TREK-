@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0a0c">
+<title>TREK//INDIA — F1 Carbon Series</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Titillium+Web:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --carbon-black:#0a0a0c;--carbon-deep:#101014;--carbon-panel:#16161c;
+  --carbon-elevated:#1e1e26;--carbon-border:#2a2a35;
+  --f1-red:#e10600;--f1-red-glow:rgba(225,6,0,.4);
+  --f1-silver:#c0c0c8;--f1-white:#f0f0f5;--f1-muted:#7a7a8a;
+  --green:#00e676;--amber:#ffc107;--purple:#9b59b6;
+  --gradient-red:linear-gradient(135deg,#e10600 0%,#8b0000 100%);
+  --gradient-panel:linear-gradient(160deg,#1e1e26 0%,#121218 100%);
+  --font-display:'Titillium Web','Rajdhani',sans-serif;
+  --font-body:'Rajdhani','Titillium Web',sans-serif;
+  --shadow-premium:0 8px 32px rgba(0,0,0,.8),0 2px 8px rgba(225,6,0,.1);
+  --shadow-card:0 4px 20px rgba(0,0,0,.6);
+  --clip-para:polygon(8% 0%,100% 0%,92% 100%,0% 100%);
+  --header-h:108px;
+}
+body.light-mode{
+  --carbon-black:#f0f0f5;--carbon-deep:#e4e4ec;--carbon-panel:#ffffff;
+  --carbon-elevated:#f7f7fa;--carbon-border:#d0d0d8;
+  --f1-silver:#4a4a5a;--f1-white:#15151c;--f1-muted:#6a6a7a;
+  --gradient-panel:linear-gradient(160deg,#ffffff 0%,#eaeaf0 100%);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);background:var(--carbon-black);color:var(--f1-white);
+  line-height:1.5;min-height:100vh;overflow-x:hidden;
+  background-image:
+    radial-gradient(circle at 20% 30%,rgba(225,6,0,.03) 0%,transparent 40%),
+    radial-gradient(circle at 80% 70%,rgba(225,6,0,.02) 0%,transparent 40%),
+    repeating-linear-gradient(45deg,rgba(255,255,255,.008) 0,rgba(255,255,255,.008) 1px,transparent 1px,transparent 8px),
+    repeating-linear-gradient(-45deg,rgba(255,255,255,.008) 0,rgba(255,255,255,.008) 1px,transparent 1px,transparent 8px),
+    linear-gradient(180deg,#0a0a0c 0%,#101014 100%);
+  transition:background-color .3s,color .3s;
+}
+body.light-mode{background-image:none;background-color:#f0f0f5}
+h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;text-transform:uppercase;letter-spacing:.08em;line-height:1.2}
+.text-accent{color:var(--f1-red)}
+.text-muted{color:var(--f1-muted)}
+.app-shell{max-width:1320px;margin:0 auto;padding:0 20px 100px}
+/* HEADER */
+.site-header{display:flex;align-items:center;justify-content:space-between;padding:20px 0 16px;border-bottom:1px solid var(--carbon-border);position:relative}
+.site-header::after{content:'';position:absolute;bottom:-1px;left:0;width:120px;height:2px;background:var(--f1-red);box-shadow:0 0 12px var(--f1-red-glow)}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+.brand-icon{width:42px;height:42px;background:var(--gradient-red);display:flex;align-items:center;justify-content:center;clip-path:var(--clip-para);font-size:1.3rem;color:#fff;box-shadow:0 0 20px var(--f1-red-glow)}
+.brand-text{font-family:var(--font-display);font-weight:900;font-size:1.6rem;letter-spacing:.12em}
+.brand-text span{color:var(--f1-red)}
+.header-right{display:flex;align-items:center;gap:16px}
+.header-meta{display:flex;align-items:center;gap:16px;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--f1-muted)}
+.live-dot{display:inline-block;width:6px;height:6px;background:var(--green);border-radius:50%;margin-right:6px;box-shadow:0 0 8px var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.icon-btn{width:36px;height:36px;background:var(--carbon-elevated);border:1px solid var(--carbon-border);color:var(--f1-silver);cursor:pointer;display:flex;align-items:center;justify-content:center;clip-path:var(--clip-para);transition:all .2s}
+.icon-btn:hover{color:var(--f1-white);border-color:var(--f1-red)}
+.icon-btn.active{background:var(--gradient-red);color:#fff;border-color:transparent}
+/* TELEMETRY STRIP */
+.telemetry{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1px;background:var(--carbon-border);margin:16px 0 20px;border:1px solid var(--carbon-border)}
+.telemetry-cell{background:var(--carbon-panel);padding:10px 14px;display:flex;flex-direction:column;gap:2px}
+.telemetry-label{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--f1-muted)}
+.telemetry-value{font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--f1-white);letter-spacing:.04em}
+.telemetry-value.accent{color:var(--f1-red)}
+/* TOP TAB NAV */
+.tab-nav-top{display:flex;flex-wrap:nowrap;gap:6px;margin-bottom:22px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.tab-nav-top::-webkit-scrollbar{height:4px}
+.tab-btn{font-family:var(--font-display);font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;padding:10px 20px;border:none;cursor:pointer;background:var(--carbon-elevated);color:var(--f1-silver);clip-path:var(--clip-para);transition:all .25s;display:flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0}
+.tab-btn i{font-size:.8rem}
+.tab-btn:hover{background:#2a2a35;color:var(--f1-white)}
+.tab-btn.active{background:var(--gradient-red);color:#fff;box-shadow:0 0 24px var(--f1-red-glow),inset 0 1px 0 rgba(255,255,255,.2)}
+/* BOTTOM TAB NAV */
+.tab-nav-bottom{position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,12,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--carbon-border);padding:8px 12px calc(8px + env(safe-area-inset-bottom));display:flex;justify-content:center;gap:4px;z-index:100;overflow-x:auto;scrollbar-width:none}
+.tab-nav-bottom::-webkit-scrollbar{display:none}
+.bottom-tab{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 14px;background:transparent;border:none;cursor:pointer;color:var(--f1-muted);font-family:var(--font-display);font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;min-width:60px;flex-shrink:0;position:relative}
+.bottom-tab i{font-size:1.05rem}
+.bottom-tab:hover{color:var(--f1-silver)}
+.bottom-tab.active{color:var(--f1-red)}
+.bottom-tab.active::after{content:'';position:absolute;top:-9px;left:50%;transform:translateX(-50%);width:24px;height:2px;background:var(--f1-red);box-shadow:0 0 8px var(--f1-red-glow)}
+/* TAB PANELS */
+.tab-panel{display:none;animation:fadeSlide .35s ease}
+.tab-panel.active{display:block}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+/* SECTION HEADERS */
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.section-header h2{font-size:1.1rem;letter-spacing:.14em;display:flex;align-items:center;gap:10px}
+.section-header h2 i{color:var(--f1-red);font-size:.95rem}
+.badge{font-family:var(--font-display);font-size:.62rem;letter-spacing:.1em;padding:4px 14px;background:rgba(225,6,0,.15);color:var(--f1-red);border:1px solid rgba(225,6,0,.3);clip-path:polygon(10% 0%,100% 0%,90% 100%,0% 100%);text-transform:uppercase}
+/* FILTER BAR */
+.filter-bar{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:8px;margin-bottom:18px;background:var(--carbon-panel);border:1px solid var(--carbon-border);padding:12px;clip-path:polygon(0 0,100% 0,100% 100%,1% 100%)}
+.filter-bar input,.filter-bar select{width:100%;padding:8px 12px;background:#0c0c10;border:1px solid var(--carbon-border);color:var(--f1-white);font-family:var(--font-body);font-size:.8rem;outline:none;clip-path:polygon(2% 0,100% 0,98% 100%,0 100%)}
+body.light-mode .filter-bar input,body.light-mode .filter-bar select{background:#f4f4f8}
+.filter-bar input:focus,.filter-bar select:focus{border-color:var(--f1-red)}
+@media(max-width:800px){.filter-bar{grid-template-columns:1fr 1fr}.filter-bar input{grid-column:1/-1}}
+/* TREK GRID */
+.trek-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.trek-card{background:var(--gradient-panel);border:1px solid var(--carbon-border);padding:16px 16px 14px;position:relative;cursor:pointer;transition:all .3s;clip-path:polygon(0 0,100% 0,100% 94%,94% 100%,0 100%);box-shadow:var(--shadow-card);animation:cardIn .4s ease both}
+@keyframes cardIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.trek-card:hover{border-color:var(--f1-red);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.8),0 0 20px rgba(225,6,0,.15)}
+.trek-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--gradient-red);opacity:0;transition:opacity .3s}
+.trek-card:hover::before{opacity:1}
+.card-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;gap:8px}
+.trek-name{font-family:var(--font-display);font-weight:700;font-size:.95rem;letter-spacing:.06em;text-transform:uppercase;color:var(--f1-white);flex:1}
+.wish-btn{width:26px;height:26px;background:transparent;border:1px solid var(--carbon-border);border-radius:50%;cursor:pointer;color:var(--f1-muted);display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:all .2s;flex-shrink:0}
+.wish-btn:hover{border-color:var(--f1-red);color:var(--f1-red)}
+.wish-btn.active{background:var(--f1-red);border-color:var(--f1-red);color:#fff}
+.card-state{font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--f1-muted);background:rgba(255,255,255,.04);padding:2px 8px;clip-path:polygon(8% 0,100% 0,92% 100%,0 100%);white-space:nowrap}
+body.light-mode .card-state{background:rgba(0,0,0,.04)}
+.card-stats{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;margin:8px 0;font-size:.72rem;color:var(--f1-silver)}
+.stat{display:flex;align-items:center;gap:5px}
+.stat i{width:12px;color:var(--f1-red);font-size:.65rem}
+.card-foot{display:flex;justify-content:space-between;align-items:center;padding-top:8px;border-top:1px solid var(--carbon-border);gap:6px}
+.price-tag{font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--f1-red);letter-spacing:.03em}
+.price-tag small{font-weight:400;font-size:.55rem;color:var(--f1-muted);letter-spacing:.06em}
+.difficulty{font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;clip-path:polygon(10% 0,100% 0,90% 100%,0 100%);white-space:nowrap}
+.difficulty.d1,.difficulty.d2{background:rgba(0,230,118,.12);color:var(--green)}
+.difficulty.d3{background:rgba(255,193,7,.12);color:var(--amber)}
+.difficulty.d4,.difficulty.d5{background:rgba(225,6,0,.12);color:var(--f1-red)}
+.rating-mini{font-size:.65rem;color:var(--amber);letter-spacing:.04em}
+/* LAYOUTS */
+.detail-layout{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:900px){.detail-layout{grid-template-columns:1fr}}
+.panel-card{background:var(--gradient-panel);border:1px solid var(--carbon-border);padding:18px 18px;box-shadow:var(--shadow-card)}
+.panel-card h3{font-size:.78rem;letter-spacing:.14em;color:var(--f1-red);margin-bottom:14px;display:flex;align-items:center;gap:8px;padding-bottom:10px;border-bottom:1px solid var(--carbon-border)}
+/* MAP */
+.route-map-wrapper{position:relative;background:#0c0c10;border:1px solid var(--carbon-border);padding:6px;overflow:hidden}
+body.light-mode .route-map-wrapper{background:#f4f4f8}
+.route-map-wrapper svg{display:block;width:100%;height:auto}
+.map-label{font-family:var(--font-display);font-size:8px;font-weight:600;fill:var(--f1-white);letter-spacing:.05em;text-transform:uppercase}
+.map-label-alt{font-family:var(--font-body);font-size:7px;fill:var(--f1-muted);letter-spacing:.03em}
+.map-dot{fill:var(--f1-red);filter:drop-shadow(0 0 4px var(--f1-red-glow))}
+.map-dot.start{fill:var(--green);filter:drop-shadow(0 0 4px rgba(0,230,118,.5))}
+.map-dot.end{fill:var(--f1-white);filter:drop-shadow(0 0 4px rgba(255,255,255,.4))}
+.map-dot.hovered{r:6;transition:r .15s}
+.map-route-line{stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 3px var(--f1-red-glow));animation:drawRoute 1.6s ease forwards}
+@keyframes drawRoute{from{stroke-dashoffset:2000}to{stroke-dashoffset:0}}
+.map-route-glow{stroke:var(--f1-red);stroke-width:7;fill:none;opacity:.18;filter:blur(3px)}
+.compass-mini{position:absolute;top:10px;right:10px;width:36px;height:36px;background:rgba(0,0,0,.6);border:1px solid var(--carbon-border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--f1-red);font-size:.9rem}
+/* ELEVATION */
+.elev-chart{background:#0c0c10;border:1px solid var(--carbon-border);padding:10px;margin-top:12px}
+body.light-mode .elev-chart{background:#f4f4f8}
+.elev-chart svg{display:block;width:100%;height:auto}
+/* SPECS / SUMMARY ROWS */
+.summary-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.8rem;gap:8px}
+.summary-row:last-child{border-bottom:none}
+.summary-row .label{color:var(--f1-muted);display:flex;align-items:center;gap:6px}
+.summary-row .label i{color:var(--f1-red);font-size:.65rem;width:14px}
+.summary-row .value{font-family:var(--font-display);font-weight:700;color:var(--f1-white);text-align:right}
+.summary-row .value.accent{color:var(--f1-red)}
+/* ITINERARY */
+.itinerary-list{list-style:none}
+.itinerary-list li{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.78rem;color:var(--f1-silver);line-height:1.4}
+.itinerary-list li:last-child{border-bottom:none}
+.day-badge{flex-shrink:0;width:34px;font-family:var(--font-display);font-size:.6rem;font-weight:700;color:var(--f1-red);text-transform:uppercase;padding-top:2px}
+/* FORM */
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-family:var(--font-display);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--f1-muted);margin-bottom:5px}
+.form-control{width:100%;padding:9px 12px;background:#0c0c10;border:1px solid var(--carbon-border);color:var(--f1-white);font-family:var(--font-body);font-size:.82rem;clip-path:polygon(2% 0,100% 0,98% 100%,0 100%);outline:none;transition:border-color .2s}
+body.light-mode .form-control{background:#f4f4f8}
+.form-control:focus{border-color:var(--f1-red)}
+.form-control option{background:var(--carbon-deep);color:var(--f1-white)}
+.summary-box{background:#0c0c10;border:1px solid var(--carbon-border);padding:14px;clip-path:polygon(0 0,100% 0,100% 96%,97% 100%,0 100%)}
+body.light-mode .summary-box{background:#f4f4f8}
+/* BUTTONS */
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-display);font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:10px 26px;border:none;cursor:pointer;background:var(--gradient-red);color:#fff;clip-path:var(--clip-para);transition:all .25s;box-shadow:0 0 20px var(--f1-red-glow)}
+.btn-primary:hover{filter:brightness(1.15);box-shadow:0 0 32px var(--f1-red-glow)}
+.btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:6px;font-family:var(--font-display);font-weight:700;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:8px 20px;border:1px solid var(--carbon-border);cursor:pointer;background:transparent;color:var(--f1-silver);clip-path:var(--clip-para);transition:all .25s}
+.btn-secondary:hover{border-color:var(--f1-red);color:var(--f1-white)}
+/* SPEEDOMETER */
+.speed-wrap{display:flex;align-items:center;justify-content:center;padding:6px 0}
+/* GRID LAYOUTS FOR PANELS */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:800px){.grid-2,.grid-3{grid-template-columns:1fr}}
+/* COMPARE */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:700px){.compare-grid{grid-template-columns:1fr}}
+.compare-table{background:var(--carbon-panel);border:1px solid var(--carbon-border);overflow:hidden}
+.compare-row{display:grid;grid-template-columns:1.2fr 1fr 1fr;padding:10px 14px;border-bottom:1px solid var(--carbon-border);font-size:.78rem;align-items:center}
+.compare-row:last-child{border-bottom:none}
+.compare-row.header{background:rgba(225,6,0,.08);font-family:var(--font-display);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:.68rem;color:var(--f1-red)}
+.compare-row .lbl{color:var(--f1-muted);font-size:.72rem;display:flex;align-items:center;gap:6px}
+.compare-row .lbl i{color:var(--f1-red);font-size:.6rem;width:14px}
+.compare-row .v{font-family:var(--font-display);font-weight:700;text-align:center;font-size:.82rem}
+.compare-row .v.win{color:var(--green)}
+/* CALENDAR */
+.cal-table{width:100%;border-collapse:collapse;font-size:.72rem;background:var(--carbon-panel);border:1px solid var(--carbon-border)}
+.cal-table th,.cal-table td{padding:6px 4px;text-align:center;border:1px solid var(--carbon-border)}
+.cal-table th{font-family:var(--font-display);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--f1-muted);background:var(--carbon-elevated)}
+.cal-table td.trek-name-cell{text-align:left;font-family:var(--font-display);font-weight:600;font-size:.68rem;letter-spacing:.04em;color:var(--f1-white);padding-left:10px;min-width:130px}
+.cal-cell{padding:8px 4px;font-size:.9rem}
+.cal-best{background:rgba(0,230,118,.22);color:var(--green)}
+.cal-ok{background:rgba(255,193,7,.15);color:var(--amber)}
+.cal-off{background:rgba(225,6,0,.08);color:var(--f1-red);opacity:.5}
+/* GEAR / SAFETY / OPERATORS */
+.gear-list,.safety-list,.operator-list{list-style:none}
+.gear-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.8rem;cursor:pointer}
+.gear-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--f1-red);cursor:pointer}
+.gear-item.checked{color:var(--f1-muted);text-decoration:line-through}
+.operator-card{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.8rem;gap:8px}
+.operator-card:last-child{border-bottom:none}
+.op-name{font-family:var(--font-display);font-weight:600;color:var(--f1-white)}
+.op-meta{font-size:.65rem;color:var(--f1-muted);letter-spacing:.04em}
+.op-price{font-family:var(--font-display);font-weight:700;color:var(--f1-red);font-size:.9rem}
+.safety-card{background:rgba(225,6,0,.05);border-left:3px solid var(--f1-red);padding:10px 12px;margin-bottom:10px;font-size:.78rem}
+.safety-card b{color:var(--f1-red);font-family:var(--font-display);letter-spacing:.06em;text-transform:uppercase;font-size:.7rem;display:block;margin-bottom:4px}
+/* TOAST */
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--gradient-red);color:#fff;padding:10px 22px;font-family:var(--font-display);font-weight:700;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;clip-path:var(--clip-para);opacity:0;transition:all .3s;z-index:300;box-shadow:0 8px 32px rgba(225,6,0,.4)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* FOOTER */
+.site-footer{text-align:center;padding:20px 0;border-top:1px solid var(--carbon-border);margin-top:24px;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--f1-muted)}
+.site-footer i{color:var(--f1-red);margin:0 4px}
+/* SCROLLBAR */
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:var(--carbon-deep)}
+::-webkit-scrollbar-thumb{background:var(--carbon-border);border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:var(--f1-red)}
+.hidden{display:none!important}
+/* mobile spacing for bottom nav */
+@media(max-width:700px){.app-shell{padding-bottom:100px}}
+</style>
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <a href="#all" class="brand" onclick="switchTab('all');return false;">
+      <div class="brand-icon"><i class="fas fa-mountain"></i></div>
+      <div class="brand-text">TREK<span>//</span>INDIA</div>
+    </a>
+    <div class="header-right">
+      <div class="header-meta">
+        <span class="hide-mobile"><span class="live-dot"></span> LIVE</span>
+        <span class="hide-mobile">2026</span>
+      </div>
+      <button class="icon-btn" id="themeBtn" onclick="toggleTheme()" title="Toggle theme"><i class="fas fa-sun"></i></button>
+      <button class="icon-btn" id="soundBtn" onclick="toggleSound()" title="Sound"><i class="fas fa-volume-high"></i></button>
+      <button class="icon-btn" onclick="shareCard()" title="Share"><i class="fas fa-share-nodes"></i></button>
+    </div>
+  </header>
+
+  <!-- TELEMETRY -->
+  <div class="telemetry" id="telemetry">
+    <div class="telemetry-cell"><span class="telemetry-label">Routes</span><span class="telemetry-value accent" id="tel-routes">30</span></div>
+    <div class="telemetry-cell"><span class="telemetry-label">Total KM</span><span class="telemetry-value" id="tel-km">—</span></div>
+    <div class="telemetry-cell"><span class="telemetry-label">Max Altitude</span><span class="telemetry-value" id="tel-alt">—</span></div>
+    <div class="telemetry-cell"><span class="telemetry-label">States</span><span class="telemetry-value" id="tel-states">—</span></div>
+    <div class="telemetry-cell"><span class="telemetry-label">Avg Cost</span><span class="telemetry-value" id="tel-cost">—</span></div>
+    <div class="telemetry-cell"><span class="telemetry-label">Saved</span><span class="telemetry-value" id="tel-saved">0</span></div>
+  </div>
+
+  <!-- TOP TAB NAV -->
+  <nav class="tab-nav-top" id="topNav">
+    <button class="tab-btn active" data-tab="all" onclick="switchTab('all')"><i class="fas fa-list"></i> All Treks</button>
+    <button class="tab-btn" data-tab="detail" onclick="switchTab('detail')"><i class="fas fa-map-marked-alt"></i> Detail & Map</button>
+    <button class="tab-btn" data-tab="plan" onclick="switchTab('plan')"><i class="fas fa-sliders-h"></i> Plan</button>
+    <button class="tab-btn" data-tab="compare" onclick="switchTab('compare')"><i class="fas fa-code-compare"></i> Compare</button>
+    <button class="tab-btn" data-tab="calendar" onclick="switchTab('calendar')"><i class="fas fa-calendar"></i> Calendar</button>
+    <button class="tab-btn" data-tab="gear" onclick="switchTab('gear')"><i class="fas fa-suitcase-rolling"></i> Gear</button>
+    <button class="tab-btn" data-tab="safety" onclick="switchTab('safety')"><i class="fas fa-shield-halved"></i> Safety</button>
+    <button class="tab-btn" data-tab="operators" onclick="switchTab('operators')"><i class="fas fa-briefcase"></i> Operators</button>
+    <button class="tab-btn" data-tab="saved" onclick="switchTab('saved')"><i class="fas fa-heart"></i> Saved</button>
+  </nav>
+
+  <!-- ===================== TAB: ALL TREKS ===================== -->
+  <section id="panel-all" class="tab-panel active">
+    <div class="section-header">
+      <h2><i class="fas fa-flag-checkered"></i> Trek Grid</h2>
+      <span class="badge" id="gridCount">30 Routes · Verified 2026</span>
+    </div>
+    <div class="filter-bar">
+      <input type="text" id="filterSearch" placeholder="🔍 Search trek or state..." oninput="renderTrekGrid()">
+      <select id="filterState" onchange="renderTrekGrid()"><option value="">All States</option></select>
+      <select id="filterDiff" onchange="renderTrekGrid()">
+        <option value="">All Difficulty</option>
+        <option value="1">★ Easy (1)</option>
+        <option value="2">★★ Easy–Mod (2)</option>
+        <option value="3">★★★ Moderate (3)</option>
+        <option value="4">★★★★ Mod–Diff (4)</option>
+        <option value="5">★★★★★ Difficult (5)</option>
+      </select>
+      <select id="filterDays" onchange="renderTrekGrid()">
+        <option value="">Any Duration</option>
+        <option value="1-5">1–5 days</option>
+        <option value="6-8">6–8 days</option>
+        <option value="9-12">9–12 days</option>
+        <option value="13-99">13+ days</option>
+      </select>
+      <select id="filterSort" onchange="renderTrekGrid()">
+        <option value="name">Sort: Name</option>
+        <option value="price-asc">Price ↑</option>
+        <option value="price-desc">Price ↓</option>
+        <option value="alt">Max Altitude</option>
+        <option value="days">Days</option>
+      </select>
+    </div>
+    <div class="trek-grid" id="trekGrid"></div>
+  </section>
+
+  <!-- ===================== TAB: DETAIL ===================== -->
+  <section id="panel-detail" class="tab-panel">
+    <div class="section-header">
+      <h2><i class="fas fa-route"></i> Route Intelligence</h2>
+      <span class="badge" id="detailBadge">Select a trek</span>
+    </div>
+    <div class="detail-layout">
+      <div>
+        <div class="panel-card" style="margin-bottom:14px">
+          <h3><i class="fas fa-map"></i> Route Map</h3>
+          <div class="route-map-wrapper" id="mapWrapper"></div>
+          <div class="elev-chart" id="elevChart"></div>
+        </div>
+        <div class="panel-card">
+          <h3><i class="fas fa-info-circle"></i> Trek Specs</h3>
+          <div id="detailSpecs"></div>
+        </div>
+      </div>
+      <div>
+        <div class="panel-card" style="margin-bottom:14px">
+          <h3><i class="fas fa-calendar-day"></i> Itinerary</h3>
+          <ul class="itinerary-list" id="detailItinerary"></ul>
+        </div>
+        <div class="panel-card">
+          <h3><i class="fas fa-suitcase-rolling"></i> Gear Checklist</h3>
+          <ul class="gear-list" id="detailGear"></ul>
+        </div>
+      </div>
+    </div>
+    <div class="grid-2" style="margin-top:14px">
+      <div class="panel-card"><h3><i class="fas fa-shield-halved"></i> Safety & Rescue</h3><div id="detailSafety"></div></div>
+      <div class="panel-card"><h3><i class="fas fa-briefcase"></i> Verified Operators</h3><ul class="operator-list" id="detailOperators"></ul></div>
+    </div>
+  </section>
+
+  <!-- ===================== TAB: PLAN ===================== -->
+  <section id="panel-plan" class="tab-panel">
+    <div class="section-header"><h2><i class="fas fa-calculator"></i> Realistic Planner</h2><span class="badge">Estimate · Timing · Budget</span></div>
+    <div class="grid-2">
+      <div class="panel-card">
+        <h3><i class="fas fa-sliders-h"></i> Parameters</h3>
+        <div class="form-group"><label>Select Trek</label><select id="planTrekSelect" class="form-control" onchange="updatePlan()"></select></div>
+        <div class="form-group"><label>Group Size</label><input type="number" id="planGroupSize" class="form-control" value="2" min="1" max="20" onchange="updatePlan()"></div>
+        <div class="form-group"><label>Season</label><select id="planSeason" class="form-control" onchange="updatePlan()"><option value="peak">Peak</option><option value="shoulder">Shoulder</option><option value="off">Off</option></select></div>
+        <div class="form-group"><label>Transport</label><select id="planTransport" class="form-control" onchange="updatePlan()"><option value="shared">Shared Vehicle</option><option value="private">Private Vehicle</option><option value="public">Public Bus/Train</option></select></div>
+        <div class="form-group"><label>Gear Rental</label><select id="planGear" class="form-control" onchange="updatePlan()"><option value="0">None (own gear)</option><option value="2500">Basic (₹2,500)</option><option value="5000">Full (₹5,000)</option></select></div>
+        <div class="form-group"><label>Insurance</label><select id="planInsurance" class="form-control" onchange="updatePlan()"><option value="0">No</option><option value="500">₹500</option><option value="1200">₹1,200</option></select></div>
+        <button class="btn-primary" onclick="updatePlan(true)"><i class="fas fa-sync-alt"></i> Recalculate</button>
+      </div>
+      <div class="panel-card">
+        <h3><i class="fas fa-chart-pie"></i> Full Budget Breakdown</h3>
+        <div class="summary-box" id="planSummary"></div>
+        <div id="planSpeed" class="speed-wrap"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TAB: COMPARE ===================== -->
+  <section id="panel-compare" class="tab-panel">
+    <div class="section-header"><h2><i class="fas fa-code-compare"></i> Head-to-Head</h2><span class="badge">Compare any 2 treks</span></div>
+    <div class="compare-grid">
+      <div class="panel-card"><h3><i class="fas fa-1"></i> Trek A</h3><select id="cmpA" class="form-control" onchange="renderCompare()"></select></div>
+      <div class="panel-card"><h3><i class="fas fa-2"></i> Trek B</h3><select id="cmpB" class="form-control" onchange="renderCompare()"></select></div>
+    </div>
+    <div id="compareOutput"></div>
+  </section>
+
+  <!-- ===================== TAB: CALENDAR ===================== -->
+  <section id="panel-calendar" class="tab-panel">
+    <div class="section-header"><h2><i class="fas fa-calendar"></i> Season Calendar</h2><span class="badge">12-month grid · Green = Best</span></div>
+    <div class="panel-card" style="overflow-x:auto">
+      <table class="cal-table" id="calTable"></table>
+    </div>
+    <div style="display:flex;gap:14px;margin-top:14px;font-size:.7rem;flex-wrap:wrap">
+      <span style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:14px;background:rgba(0,230,118,.22);border:1px solid rgba(0,230,118,.4)"></span> Best</span>
+      <span style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:14px;background:rgba(255,193,7,.15);border:1px solid rgba(255,193,7,.3)"></span> Shoulder</span>
+      <span style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:14px;background:rgba(225,6,0,.08);border:1px solid rgba(225,6,0,.25)"></span> Off / Closed</span>
+    </div>
+  </section>
+
+  <!-- ===================== TAB: GEAR ===================== -->
+  <section id="panel-gear" class="tab-panel">
+    <div class="section-header"><h2><i class="fas fa-suitcase-rolling"></i> Gear Checklist</h2><span class="badge">Per-trek packing</span></div>
+    <div class="grid-2">
+      <div class="panel-card">
+        <h3><i class="fas fa-mountain"></i> Select Trek</h3>
+        <div class="form-group"><select id="gearTrekSelect" class="form-control" onchange="renderGear()"></select></div>
+        <div id="gearStats"></div>
+      </div>
+      <div class="panel-card">
+        <h3><i class="fas fa-clipboard-check"></i> Packing List</h3>
+        <ul class="gear-list" id="gearListFull"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TAB: SAFETY ===================== -->
+  <section id="panel-safety" class="tab-panel">
+    <div class="section-header"><h2><i class="fas fa-shield-halved"></i> Safety Intelligence</h2><span class="badge">AMS · Rescue · Comms</span></div>
+    <div class="grid-2">
+      <div class="panel-card">
+        <h3><i class="fas fa-mountain"></i> Select Trek</h3>
+        <div class="form-group"><select id="safetyTrekSelect" class="form-control" onchange="renderSafety()"></select></div>
+        <div id="safetyTrekInfo"></div>
+      </div>
+      <div class="panel-card">
+        <h3><i class="fas fa-heart-pulse"></i> AMS / Altitude Sickness Guide</h3>
+        <div class="safety-card"><b>AMS (Mild)</b>Headache, nausea, dizziness. Rest, hydrate, descend if worsens. Do NOT ascend further.</div>
+        <div class="safety-card"><b>HACE (Brain)</b>Confusion, ataxia, severe headache. Emergency descent + Dexamethasone if available.</div>
+        <div class="safety-card"><b>HAPE (Lungs)</b>Breathlessness at rest, cough. Emergency descent + Nifedipine if available. Call rescue.</div>
+        <div class="safety-card"><b>Golden Rule</b>Above 3,000 m: gain max 300–500 m per day. Rest every 2 days. Never skip acclimatization.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TAB: OPERATORS ===================== -->
+  <section id="panel-operators" class="tab-panel">
+    <div class="section-header"><h2><i class="fas fa-briefcase"></i> Verified Operators</h2><span class="badge">Price · Rating · Guarantee</span></div>
+    <div class="grid-2">
+      <div class="panel-card">
+        <h3><i class="fas fa-mountain"></i> Select Trek</h3>
+        <div class="form-group"><select id="opTrekSelect" class="form-control" onchange="renderOperators()"></select></div>
+        <div id="opTrekInfo"></div>
+      </div>
+      <div class="panel-card">
+        <h3><i class="fas fa-list-check"></i> Available Operators</h3>
+        <ul class="operator-list" id="opList"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TAB: SAVED ===================== -->
+  <section id="panel-saved" class="tab-panel">
+    <div class="section-header"><h2><i class="fas fa-heart"></i> Your Wishlist</h2><span class="badge" id="savedCount">0 saved</span></div>
+    <div class="trek-grid" id="savedGrid"></div>
+    <div id="savedEmpty" style="text-align:center;padding:60px 20px;color:var(--f1-muted)">
+      <i class="fas fa-heart-crack" style="font-size:3rem;color:var(--carbon-border);margin-bottom:12px;display:block"></i>
+      <p style="font-family:var(--font-display);letter-spacing:.08em;text-transform:uppercase">No treks saved yet</p>
+      <p style="font-size:.78rem;margin-top:6px">Click the ♡ on any trek card to save it here</p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    TREK//INDIA <i class="fas fa-circle"></i> F1 CARBON SERIES <i class="fas fa-circle"></i> DATA 2026
+  </footer>
+</div>
+
+<!-- BOTTOM TAB NAV -->
+<nav class="tab-nav-bottom" id="bottomNav">
+  <button class="bottom-tab active" data-tab="all" onclick="switchTab('all')"><i class="fas fa-list"></i>Treks</button>
+  <button class="bottom-tab" data-tab="detail" onclick="switchTab('detail')"><i class="fas fa-map-marked-alt"></i>Map</button>
+  <button class="bottom-tab" data-tab="plan" onclick="switchTab('plan')"><i class="fas fa-sliders-h"></i>Plan</button>
+  <button class="bottom-tab" data-tab="compare" onclick="switchTab('compare')"><i class="fas fa-code-compare"></i>Compare</button>
+  <button class="bottom-tab" data-tab="calendar" onclick="switchTab('calendar')"><i class="fas fa-calendar"></i>Season</button>
+  <button class="bottom-tab" data-tab="gear" onclick="switchTab('gear')"><i class="fas fa-suitcase-rolling"></i>Gear</button>
+  <button class="bottom-tab" data-tab="safety" onclick="switchTab('safety')"><i class="fas fa-shield-halved"></i>Safety</button>
+  <button class="bottom-tab" data-tab="operators" onclick="switchTab('operators')"><i class="fas fa-briefcase"></i>Ops</button>
+  <button class="bottom-tab" data-tab="saved" onclick="switchTab('saved')"><i class="fas fa-heart"></i>Saved</button>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   TREK DATABASE — 30 treks with full data
+============================================================ */
+const MONTHS = ['J','F','M','A','M','J','J','A','S','O','N','D'];
+function rp(label, alt, x, y, type, water, camp){return {label, alt, x, y, type, water:!!water, camp:!!camp};}
+
+const TREKS = [
+  {id:'kedarkantha', name:'Kedarkantha', state:'Uttarakhand', days:6, distance:23, maxAlt:3810, difficulty:'Easy–Moderate', diff:2, price:11450, season:'Oct–Apr',
+    months:'okokokoffoffoffoffbestbestbestbestbestbest',
+    routePoints:[rp('Sankri','1,920 m',60,80,'start',1,1),rp('Juda Ka Talab','2,730 m',140,150,'mid',1,1),rp('Kedarkantha Base','3,500 m',220,200,'mid',0,1),rp('Kedarkantha Summit','3,810 m',300,120,'end',0,0)],
+    itinerary:[{day:'D1',desc:'Dehradun → Sankri (1,920 m). 9–10 hr drive.'},{day:'D2',desc:'Sankri → Juda Ka Talab (2,730 m). 4 km, 4–5 hr forest trail.'},{day:'D3',desc:'Juda Ka Talab → Kedarkantha Base (3,500 m). 4 km, 4 hr.'},{day:'D4',desc:'Summit day: Base → Kedarkantha (3,810 m) → Hargaon. 6 km, 8–9 hr.'},{day:'D5',desc:'Hargaon → Sankri. 6 km, 5 hr pine forest descent.'},{day:'D6',desc:'Sankri → Dehradun.'}],
+    gear:['Trekking shoes','Down jacket','Warm layers','Trek pants','Fleece','Rain jacket','Sunglasses','Sunscreen','Water bottle','Headlamp','First aid','Power bank'],
+    safety:{rescue:'SDRF Uttarkashi',hospital:'Purola District Hospital',network:'Jio patchy after Sankri; BSNL best',notes:'Carry cash — no ATMs after Dehradun.'},
+    operators:[{name:'IndiaHikes',price:11450,rating:4.8},{name:'Trek The Himalayas',price:11950,rating:4.7},{name:'Adventure Nation',price:10999,rating:4.5}],
+    reviews:{rating:4.7,count:324,view:5,snow:4}}
+  ,
+  {id:'valley-of-flowers', name:'Valley of Flowers', state:'Uttarakhand', days:6, distance:38, maxAlt:4329, difficulty:'Easy–Moderate', diff:2, price:12450, season:'Jul–Sep',
+    months:'offoffoffoffbestbestbestbestoffoffoffoffoff',
+    routePoints:[rp('Govindghat','1,800 m',60,220,'start',1,1),rp('Ghangaria','3,050 m',150,150,'mid',1,1),rp('Valley of Flowers','3,600 m',240,100,'mid',1,0),rp('Hemkund Sahib','4,329 m',320,60,'end',1,0)],
+    itinerary:[{day:'D1',desc:'Haridwar → Joshimath. 10–11 hr drive.'},{day:'D2',desc:'Joshimath → Govindghat → Ghangaria (3,050 m). 9 km trek.'},{day:'D3',desc:'Ghangaria → Valley of Flowers → Ghangaria. 7 km, 6–7 hr. UNESCO site.'},{day:'D4',desc:'Ghangaria → Hemkund Sahib (4,329 m) → Ghangaria. 6 km, 8–9 hr.'},{day:'D5',desc:'Ghangaria → Govindghat → Joshimath.'},{day:'D6',desc:'Joshimath → Haridwar.'}],
+    gear:['Trekking shoes','Rain jacket','Poncho','Quick-dry pants','Warm layers','Sunscreen','Water bottle','Headlamp','First aid','Mosquito repellent'],
+    safety:{rescue:'SDRF Chamoli',hospital:'Joshimath District Hospital',network:'Jio good till Govindghat; no signal in valley',notes:'Leeches in monsoon — carry salt.'},
+    operators:[{name:'Trek The Himalayas',price:12450,rating:4.7},{name:'IndiaHikes',price:12950,rating:4.8},{name:'Adventure Nation',price:11899,rating:4.4}],
+    reviews:{rating:4.8,count:412,view:5,snow:2}}
+  ,
+  {id:'hampta-pass', name:'Hampta Pass', state:'Himachal Pradesh', days:6, distance:26, maxAlt:4270, difficulty:'Moderate', diff:3, price:12950, season:'Jun–Oct',
+    months:'offoffoffoffoffbestbestoffoffbestbestbestoff',
+    routePoints:[rp('Jobra','2,980 m',60,200,'start',1,0),rp('Chika','3,100 m',130,170,'mid',1,1),rp('Balu Ka Ghera','3,600 m',200,130,'mid',1,1),rp('Hampta Pass','4,270 m',270,70,'end',0,0),rp('Chatru','3,360 m',340,160,'mid',1,0)],
+    itinerary:[{day:'D1',desc:'Manali → Jobra → Chika. 2 hr drive, 2 hr trek.'},{day:'D2',desc:'Chika → Balu Ka Ghera (3,600 m). 5 km, 5 hr.'},{day:'D3',desc:'Balu Ka Ghera → Hampta Pass (4,270 m) → Shea Goru. 9 km, 9–11 hr.'},{day:'D4',desc:'Shea Goru → Chatru. 5 km, 4 hr.'},{day:'D5',desc:'Chatru → Chandratal Lake → Manali.'},{day:'D6',desc:'Buffer / return.'}],
+    gear:['Trekking shoes','Down jacket','Rain jacket','Trek pants','Warm layers','Gloves','Sunglasses','Sunscreen','Water bottle','Headlamp','First aid'],
+    safety:{rescue:'Atal Bihari Vajpayee Institute (Manali)',hospital:'Manali Mission Hospital',network:'Jio good till Jobra; none beyond',notes:'Crossover trek — one side green, other barren Lahaul.'},
+    operators:[{name:'IndiaHikes',price:12950,rating:4.8},{name:'Trek The Himalayas',price:13450,rating:4.6},{name:'Adventure Nation',price:12499,rating:4.5}],
+    reviews:{rating:4.7,count:289,view:5,snow:3}}
+  ,
+  {id:'goechala', name:'Goechala', state:'Sikkim', days:10, distance:73, maxAlt:4600, difficulty:'Difficult', diff:5, price:22450, season:'Apr–May, Oct–Nov',
+    months:'offoffoffbestbestoffoffoffoffbestbestoffoff',
+    routePoints:[rp('Yuksom','1,780 m',50,240,'start',1,1),rp('Tshoka','2,950 m',120,190,'mid',1,1),rp('Dzongri','4,020 m',200,130,'mid',1,1),rp('Thansing','3,900 m',270,150,'mid',1,1),rp('Goechala','4,600 m',340,50,'end',0,0)],
+    itinerary:[{day:'D1',desc:'NJP/Bagdogra → Yuksom (1,780 m). 5–6 hr drive.'},{day:'D2',desc:'Yuksom → Sachen (2,200 m). 8 km, 5 hr.'},{day:'D3',desc:'Sachen → Tshoka (2,950 m) via Bakhim. 8 km.'},{day:'D4',desc:'Tshoka → Dzongri (4,020 m). 9 km, 7–8 hr.'},{day:'D5',desc:'Acclimatization at Dzongri.'},{day:'D6',desc:'Dzongri → Thansing (3,900 m). 8 km.'},{day:'D7',desc:'Thansing → Lamuney (4,100 m). 5 km.'},{day:'D8',desc:'Lamuney → Goechala (4,600 m) → Thansing. 12 km, 10 hr. Kanchenjunga view.'},{day:'D9',desc:'Thansing → Tshoka. 13 km.'},{day:'D10',desc:'Tshoka → Yuksom → NJP.'}],
+    gear:['Trekking shoes','Down jacket -10°C','Fleece','Thermal base','Rain gear','Crampons (Oct)','Sunglasses','Sunscreen','Water bottle','Headlamp','First aid','Power bank','Walking stick'],
+    safety:{rescue:'Sikkim SDRF + Army',hospital:'Yuksom PHC, Gangtok referral',network:'Only BSNL at Tshoka; no signal beyond',notes:'Permits & ID mandatory. Kanchenjunga Biosphere permit.'},
+    operators:[{name:'IndiaHikes',price:22450,rating:4.9},{name:'Trek The Himalayas',price:23450,rating:4.7},{name:'Adventure Nation',price:21999,rating:4.4}],
+    reviews:{rating:4.9,count:512,view:5,snow:4}}
+  ,
+  {id:'har-ki-dun', name:'Har Ki Dun', state:'Uttarakhand', days:7, distance:37, maxAlt:3566, difficulty:'Moderate', diff:3, price:13450, season:'Apr–Jun, Sep–Nov',
+    months:'offoffoffoffbestbestoffoffoffbestbestoffoff',
+    routePoints:[rp('Taluka','2,000 m',60,200,'start',1,1),rp('Osla','2,400 m',140,160,'mid',1,1),rp('Har Ki Dun','3,566 m',260,80,'end',1,0)],
+    itinerary:[{day:'D1',desc:'Dehradun → Sankri.'},{day:'D2',desc:'Sankri → Taluka → Osla (2,400 m).'},{day:'D3',desc:'Osla → Har Ki Dun (3,566 m). 12 km, 6–7 hr.'},{day:'D4',desc:'Explore Har Ki Dun valley.'},{day:'D5',desc:'Har Ki Dun → Osla. 12 km.'},{day:'D6',desc:'Osla → Taluka → Sankri.'},{day:'D7',desc:'Sankri → Dehradun.'}],
+    gear:['Trekking shoes','Down jacket','Fleece','Rain jacket','Trek pants','Sunglasses','Sunscreen','Water bottle','Headlamp','First aid'],
+    safety:{rescue:'SDRF Uttarkashi',hospital:'Purola District Hospital',network:'Jio patchy; BSNL reliable',notes:'Remote village — respectful photography.'},
+    operators:[{name:'Trek The Himalayas',price:13450,rating:4.7},{name:'IndiaHikes',price:13950,rating:4.8},{name:'Adventure Nation',price:12999,rating:4.5}],
+    reviews:{rating:4.6,count:198,view:5,snow:3}}
+  ,
+  {id:'brahmatal', name:'Brahmatal', state:'Uttarakhand', days:6, distance:22, maxAlt:3734, difficulty:'Moderate', diff:2, price:11450, season:'Dec–Mar',
+    months:'bestbestoffoffoffoffoffoffoffoffoffbestbest',
+    routePoints:[rp('Lohajung','2,300 m',60,200,'start',1,1),rp('Bekaltal','2,800 m',150,150,'mid',1,1),rp('Brahmatal','3,200 m',230,110,'mid',1,1),rp('Brahmatal Top','3,734 m',310,50,'end',0,0)],
+    itinerary:[{day:'D1',desc:'Dehradun → Lohajung.'},{day:'D2',desc:'Lohajung → Bekaltal (2,800 m). 5 km.'},{day:'D3',desc:'Bekaltal → Brahmatal (3,200 m). 6 km.'},{day:'D4',desc:'Brahmatal → Summit (3,734 m) → Lohajung. 10 km.'},{day:'D5',desc:'Buffer.'},{day:'D6',desc:'Lohajung → Dehradun.'}],
+    gear:['Trekking shoes','Microspikes','Down jacket -5°C','Fleece','Thermal base','Rain/snow jacket','Sunglasses','Sunscreen','Water bottle','Headlamp','First aid'],
+    safety:{rescue:'SDRF',hospital:'Gwaldam PHC',network:'Jio spotty, BSNL best',notes:'Snow trek — crampons advisable in Jan–Feb.'},
+    operators:[{name:'IndiaHikes',price:11450,rating:4.7},{name:'Trek The Himalayas',price:11950,rating:4.6},{name:'Adventure Nation',price:10999,rating:4.4}],
+    reviews:{rating:4.6,count:245,view:5,snow:5}}
+  ,
+  {id:'kashmir-great-lakes', name:'Kashmir Great Lakes', state:'Jammu & Kashmir', days:8, distance:72, maxAlt:4200, difficulty:'Moderate–Difficult', diff:4, price:18900, season:'Jul–Sep',
+    months:'offoffoffoffoffoffbestbestbestoffoffoffoff',
+    routePoints:[rp('Shitkadi','2,400 m',50,220,'start',1,1),rp('Nichnai','3,500 m',120,160,'mid',1,1),rp('Vishansar','3,700 m',190,120,'mid',1,1),rp('Gadsar','3,600 m',260,140,'mid',1,1),rp('Gangbal','3,500 m',330,170,'end',1,1)],
+    itinerary:[{day:'D1',desc:'Srinagar → Sonamarg → Shitkadi.'},{day:'D2',desc:'Shitkadi → Nichnai. 11 km.'},{day:'D3',desc:'Nichnai → Vishansar (3,700 m) via Nichnai Pass.'},{day:'D4',desc:'Vishansar → Gadsar via Gadsar Pass. 14 km.'},{day:'D5',desc:'Gadsar → Satsar. 10 km.'},{day:'D6',desc:'Satsar → Gangbal Twin Lakes via Gaj Pass.'},{day:'D7',desc:'Gangbal → Naranag → Srinagar.'},{day:'D8',desc:'Buffer.'}],
+    gear:['Trekking shoes','Down jacket','Rain jacket','Trek pants','Fleece','Warm layers','Sunglasses','Sunscreen','Water bottle','Headlamp','First aid','Power bank'],
+    safety:{rescue:'J&K Police + Army',hospital:'Srinagar SMHS',network:'Only postpaid SIMs work (Jio/Airtel)',notes:'Security clearance may apply. Carry multiple IDs.'},
+    operators:[{name:'Trek The Himalayas',price:18900,rating:4.8},{name:'IndiaHikes',price:19450,rating:4.7},{name:'Adventure Nation',price:18499,rating:4.5}],
+    reviews:{rating:4.8,count:378,view:5,snow:2}}
+  ,
+  {id:'chadar', name:'Chadar (Frozen River)', state:'Ladakh', days:9, distance:62, maxAlt:3900, difficulty:'Difficult', diff:5, price:25000, season:'Jan–Feb',
+    months:'bestbestoffoffoffoffoffoffoffoffoffoffoffbest',
+    routePoints:[rp('Chilling','3,200 m',50,220,'start',1,1),rp('Shingra Koma','3,400 m',130,180,'mid',0,1),rp('Tibb','3,600 m',210,140,'mid',1,1),rp('Nerak','3,900 m',300,80,'end',1,1)],
+    itinerary:[{day:'D1',desc:'Arrive Leh (3,500 m). Rest & acclimatization.'},{day:'D2',desc:'Leh acclimatization. Medical check.'},{day:'D3',desc:'Leh → Chilling → Tilak Sumdo.'},{day:'D4',desc:'Tilak Sumdo → Shingra Koma. 10 km on frozen Zanskar.'},{day:'D5',desc:'Shingra Koma → Tibb. 12 km.'},{day:'D6',desc:'Tibb → Nerak. 10 km.'},{day:'D7',desc:'Nerak → Tibb.'},{day:'D8',desc:'Tibb → Chilling → Leh.'},{day:'D9',desc:'Buffer.'}],
+    gear:['Snow boots with spikes','Down jacket -20°C','Thermal base ×3','Fleece ×2','Snow goggles','Balaclava','Sunscreen SPF50','Lip balm','Water bottle','Headlamp','First aid','Diamox'],
+    safety:{rescue:'Ladakh SDRF + Army',hospital:'SNM Hospital Leh',network:'Only postpaid Jio/Airtel',notes:'Extreme cold. Health check mandatory before trek. No solo.'},
+    operators:[{name:'IndiaHikes',price:25000,rating:4.9},{name:'Trek The Himalayas',price:26000,rating:4.8},{name:'Adventure Nation',price:24500,rating:4.6}],
+    reviews:{rating:4.9,count:156,view:5,snow:5}}
+  ,
+  {id:'kuari-pass', name:'Kuari Pass', state:'Uttarakhand', days:6, distance:22, maxAlt:3876, difficulty:'Moderate', diff:3, price:8499, season:'Sep–Jun',
+    months:'bestbestbestbestbestbestoffoffbestbestbestbest',
+    routePoints:[rp('Dhak','1,900 m',50,220,'start',1,1),rp('Gulling','2,800 m',130,160,'mid',1,1),rp('Khulara','3,300 m',210,110,'mid',1,1),rp('Kuari Pass','3,876 m',300,50,'end',0,0)],
+    itinerary:[{day:'D1',desc:'Rishikesh → Joshimath.'},{day:'D2',desc:'Joshimath → Dhak → Gulling.'},{day:'D3',desc:'Gulling → Khulara. 5 km.'},{day:'D4',desc:'Khulara → Kuari Pass (3,876 m) → Khulara. 8 km.'},{day:'D5',desc:'Khulara → Dhak → Joshimath.'},{day:'D6',desc:'Joshimath → Rishikesh.'}],
+    gear:['Trekking shoes','Down jacket','Rain jacket','Warm layers','Sunglasses','Sunscreen','Water bottle','Headlamp','First aid'],
+    safety:{rescue:'SDRF Chamoli',hospital:'Joshimath District Hospital',network:'Jio reliable at Joshimath',notes:'Best winter trek with Nanda Devi views.'},
+    operators:[{name:'IndiaHikes',price:8499,rating:4.7},{name:'Trek The Himalayas',price:8999,rating:4.6},{name:'Adventure Nation',price:7999,rating:4.5}],
+    reviews:{rating:4.7,count:412,view:5,snow:4}}
+  ,
+  {id:'dayara-bugyal', name:'Dayara Bugyal', state:'Uttarakhand', days:6, distance:21, maxAlt:3639, difficulty:'Easy–Moderate', diff:2, price:11950, season:'All year',
+    months:'bestbestbestbestbestbestoffoffbestbestbestbest',
+    routePoints:[rp('Raithal','1,800 m',60,200,'start',1,1),rp('Gui','2,400 m',150,150,'mid',1,1),rp('Dayara Bugyal','3,400 m',270,70,'end',1,0)],
+    itinerary:[{day:'D1',desc:'Dehradun → Raithal.'},{day:'D2',desc:'Raithal → Gui. 4 km.'},{day:'D3',desc:'Gui → Dayara Bugyal → Gui. 6 km.'},{day:'D4',desc:'Gui → Raithal.'},{day:'D5',desc:'Raithal → Dehradun.'},{day:'D6',desc:'Buffer.'}],
+    gear:['Trekking shoes','Down jacket','Fleece','Rain jacket','Trek pants','Sunglasses','Sunscreen','Water bottle','Headlamp','First aid'],
+    safety:{rescue:'SDRF Uttarkashi',hospital:'Bhatwari PHC',network:'Jio patchy',notes:'Ideal beginner trek. Great for families.'},
+    operators:[{name:'IndiaHikes',price:11950,rating:4.6},{name:'Trek The Himalayas',price:12450,rating:4.5},{name:'Adventure Nation',price:11499,rating:4.4}],
+    reviews:{rating:4.6,count:289,view:5,snow:3}}
+  ,
+  {id:'triund', name:'Triund', state:'Himachal Pradesh', days:2, distance:9, maxAlt:2828, difficulty:'Easy', diff:1, price:1100, season:'Mar–Jun, Sep–Dec',
+    months:'offoffbestbestbestbestoffoffbestbestbestoff',
+    routePoints:[rp('McLeod Ganj','2,000 m',70,180,'start',1,1),rp('Triund','2,828 m',250,60,'end',1,1)],
+    itinerary:[{day:'D1',desc:'McLeod Ganj → Triund. 4–5 hr trek.'},{day:'D2',desc:'Triund → McLeod Ganj.'}],
+    gear:['Trekking shoes','Warm layer','Rain jacket','Water bottle','Sunscreen','Headlamp','First aid'],
+    safety:{rescue:'HP Police',hospital:'Dharamshala Zonal Hospital',network:'4G reliable',notes:'Beginner-friendly weekend trek. Camping allowed.'},
+    operators:[{name:'Local Guides Dharamshala',price:1100,rating:4.4},{name:'Himalayan Explorers',price:1400,rating:4.5},{name:'Trek The Himalayas',price:1500,rating:4.5}],
+    reviews:{rating:4.4,count:892,view:5,snow:2}}
+  ,
+  {id:'kheerganga', name:'Kheerganga', state:'Himachal Pradesh', days:3, distance:12, maxAlt:2960, difficulty:'Easy–Moderate', diff:2, price:3500, season:'Mar–Jun, Sep–Dec',
+    months:'offoffbestbestbestbestoffoffbestbestbestoff',
+    routePoints:[rp('Barshaini','1,800 m',60,190,'start',1,1),rp('Kheerganga','2,960 m',260,60,'end',1,1)],
+    itinerary:[{day:'D1',desc:'Barshaini → Kheerganga. 5–6 hr trek.'},{day:'D2',desc:'Explore hot springs & camp.'},{day:'D3',desc:'Descend to Barshaini.'}],
+    gear:['Trekking shoes','Warm layer','Rain jacket','Water bottle','Sunscreen','Headlamp','First aid'],
+    safety:{rescue:'HP Police',hospital:'Bhuntar Hospital',network:'Patchy after Barshaini',notes:'Natural hot springs at top. Popular with backpackers.'},
+    operators:[{name:'Local Guides Kasol',price:3500,rating:4.3},{name:'Himalayan Explorers',price:4000,rating:4.4},{name:'Parvati Valley Treks',price:3200,rating:4.2}],
+    reviews:{rating:4.3,count:1205,view:4,snow:2}}
+  ,
+  {id:'nag-tibba', name:'Nag Tibba', state:'Uttarakhand', days:2, distance:10, maxAlt:3022, difficulty:'Easy', diff:1, price:4000, season:'All year',
+    months:'bestbestbestbestbestbestoffoffbestbestbestbest',
+    routePoints:[rp('Pantwari','1,400 m',60,200,'start',1,1),rp('Nag Tibba','3,022 m',260,60,'end',1,0)],
+    itinerary:[{day:'D1',desc:'Dehradun → Pantwari → Nag Tibba Base.'},{day:'D2',desc:'Summit → descend → Dehradun.'}],
+    gear:['Trekking shoes','Warm layer','Rain jacket','Water bottle','Sunscreen','Headlamp','First aid'],
+    safety:{rescue:'SDRF',hospital:'Mussoorie Hospital',network:'Jio reliable',notes:'Perfect weekend beginner trek near Delhi.'},
+    operators:[{name:'IndiaHikes',price:4000,rating:4.5},{name:'Trek The Himalayas',price:4500,rating:4.4},{name:'Adventure Nation',price:3799,rating:4.3}],
+    reviews:{rating:4.4,count:645,view:4,snow:3}}
+  ,
+  {id:'chopta-tungnath', name:'Chopta–Tungnath', state:'Uttarakhand', days:4, distance:12, maxAlt:4000, difficulty:'Easy–Moderate', diff:2, price:6000, season:'Oct–Jun',
+    months:'bestbestbestbestbestbestoffoffbestbestbestbest',
+    routePoints:[rp('Chopta','2,600 m',60,180,'start',1,1),rp('Tungnath','3,680 m',200,100,'mid',1,0),rp('Chandrashila','4,000 m',300,50,'end',0,0)],
+    itinerary:[{day:'D1',desc:'Haridwar → Chopta.'},{day:'D2',desc:'Chopta → Tungnath → Chandrashila. 5 km.'},{day:'D3',desc:'Explore Chopta meadows.'},{day:'D4',desc:'Chopta → Haridwar.'}],
+    gear:['Trekking shoes','Warm layer','Rain jacket','Water bottle','Sunscreen','Headlamp','First aid','Microspikes (winter)'],
+    safety:{rescue:'SDRF Chamoli',hospital:'Ukhimath PHC',network:'Jio spotty, BSNL best',notes:'Highest Shiva temple in the world.'},
+    operators:[{name:'IndiaHikes',price:6000,rating:4.6},{name:'Trek The Himalayas',price:6500,rating:4.5},{name:'Adventure Nation',price:5699,rating:4.4}],
+    reviews:{rating:4.6,count:523,view:5,snow:4}}
+  ,
+  {id:'gaumukh-tapovan', name:'Gaumukh–Tapovan', state:'Uttarakhand', days:7, distance:46, maxAlt:4463, difficulty:'Difficult', diff:4, price:15000, season:'May–Jun, Sep–Oct',
+    months:'offoffoffoffbestbestoffoffbestbestoffoffoff',
+    routePoints:[rp('Gangotri','3,100 m',50,200,'start',1,1),rp('Bhojbasa','3,775 m',140,150,'mid',1,1),rp('Gaumukh','3,900 m',220,110,'mid',1,0),rp('Tapovan','4,463 m',310,50,'end',0,0)],
+    itinerary:[{day:'D1',desc:'Haridwar → Uttarkashi.'},{day:'D2',desc:'Uttarkashi → Gangotri → Chirbasa.'},{day:'D3',desc:'Chirbasa → Bhojbasa.'},{day:'D4',desc:'Bhojbasa → Gaumukh → Tapovan. 12 km.'},{day:'D5',desc:'Explore Tapovan. Shivling views.'},{day:'D6',desc:'Tapovan → Bhojbasa → Gangotri.'},{day:'D7',desc:'Gangotri → Haridwar.'}],
+    gear:['Trekking shoes','Down jacket -10°C','Fleece','Thermal base','Rain jacket','Crampons','Sunglasses','Sunscreen','Water bottle','Headlamp','First aid','Power bank'],
+    safety:{rescue:'SDRF Uttarkashi + NIM',hospital:'Uttarkashi District Hospital',network:'No signal beyond Gangotri',notes:'Gangotri National Park permit required. Glacier terrain.'},
+    operators:[{name:'Trek The Himalayas',price:15000,rating:4.7},{name:'IndiaHikes',price:15500,rating:4.6},{name:'Adventure Nation',price:14500,rating:4.4}],
+    reviews:{rating:4.7,count:189,view:5,snow:3}}
+  ,
+  {id:'rupin-pass', name:'Rupin Pass', state:'Himachal Pradesh', days:8, distance:52, maxAlt:4650, difficulty:'Difficult', diff:5, price:17500, season:'May–Jun, Sep–Oct',
+    months:'offoffoffoffbestbestoffoffbestbestoffoffoff',
+    routePoints:[rp('Dhauli','1,800 m',60,220,'start',1,1),rp('Sewah','2,100 m',130,180,'mid',1,1),rp('Jhaka','2,600 m',200,140,'mid',1,1),rp('Rupin Pass','4,650 m',300,50,'end',0,0)],
+    itinerary:[{day:'D1',desc:'Dehradun → Dhauli.'},{day:'D2',desc:'Dhauli → Sewah. 5 km.'},{day:'D3',desc:'Sewah → Jhaka. 5 km.'},{day:'D4',desc:'Jhaka → Dhanderas Thatch. 4 km.'},{day:'D5',desc:'Dhanderas → Upper Waterfall.'},{day:'D6',desc:'Upper Waterfall → Rupin Pass → Ronti Gad. 8 km.'},{day:'D7',desc:'Ronti Gad → Sangla.'},{day:'D8',desc:'Sangla → Shimla.'}],
+    gear:['Trekking shoes','Down jacket -10°C','Fleece','Thermal base','Rain jacket','Crampons','Ice axe','Sunglasses','Sunscreen','Water bottle','Headlamp','First aid','Rope'],
+    safety:{rescue:'SDRF + Himachal Police',hospital:'Rohru / Reckong Peo',network:'No signal beyond Dhauli',notes:'Crossover trek ends in Sangla (Kinnaur).'},
+    operators:[{name:'IndiaHikes',price:17500,rating:4.8},{name:'Trek The Himalayas',price:18000,rating:4.7},{name:'Adventure Nation',price:16999,rating:4.5}],
+    reviews:{rating:4.8,count:267,view:5,snow:4}}
+  ,
+  {id:'buran-ghati', name:'Buran Ghati', state:'Himachal Pradesh', days:7, distance:38, maxAlt:4572, difficulty:'Moderate–Difficult', diff:4, price:15950, season:'Jun–Sep',
+    months:'offoffoffoffoffbestbestbestoffoffoffoffoff',
+    routePoints:[rp('Janglik','2,400 m',60,220,'start',1,1),rp('Dayara','2,900 m',140,170,'mid',1,1),rp('Buran Ghati','4,572 m',240,70,'mid',0,0),rp('Barua','3,600 m',320,150,'end',1,1)],
+    itinerary:[{day:'D1',desc:'Shimla → Janglik.'},{day:'D2',desc:'Janglik → Dayara. 5 km.'},{day:'D3',desc:'Dayara → Litham.'},{day:'D4',desc:'Acclimatization.'},{day:'D5',desc:'Litham → Buran Ghati → Barua. 10 km.'},{day:'D6',desc:'Barua → Munshiyari.'},{day:'D7',desc:'Munshiyari → Shimla.'}],
+    gear:['Trekking shoes','Down jacket','Fleece','Thermal base','Rain jacket','Rope','Ice axe','Sunglasses','Sunscreen','Water bottle','Headlamp','First aid'],
+    safety:{rescue:'SDRF + ITBP',hospital:'Rampur Hospital',network:'No signal beyond Janglik',notes:'Rappelling descent from pass — guided only.'},
+    operators:[{name:'IndiaHikes',price:15950,rating:4.7},{name:'Trek The Himalayas',price:16500,rating:4.6},{name:'Adventure Nation',price:15499,rating:4.4}],
+    reviews:{rating:4.7,count:234,view:5,snow:3}}
+  ,
+  {id:'sar-pass', name:'Sar Pass', state:'Himachal Pradesh', days:5, distance:28, maxAlt:4220, difficulty:'Moderate', diff:3, price:9500, season:'May–Jun, Sep–Oct',
+    months:'offoffoffoffbestbestoffoffbestbestoffoffoff',
+    routePoints:[rp('Kasol','1,600 m',60,220,'start',1,1),rp('Grahan','2,350 m',130,170,'mid',1,1),rp('Sar Pass','4,220 m',250,70,'mid',0,0),rp('Biskeri','3,300 m',340,160,'end',1,1)],
+    itinerary:[{day:'D1',desc:'Kasol → Grahan.'},{day:'D2',desc:'Grahan → Padri. 6 km.'},{day:'D3',desc:'Padri → Sar Pass → Biskeri. 8 km.'},{day:'D4',desc:'Biskeri → Barshaini.'},{day:'D5',desc:'Drive to Bhuntar.'}],
+    gear:['Trekking shoes','Down jacket','Fleece','Rain jacket','Sunglasses','Sunscreen','Water bottle','Headlamp','First aid'],
+    safety:{rescue:'HP Police',hospital:'Bhuntar Hospital',network:'Reliable at Kasol',notes:'Sliding descent in snow. Ice axe recommended.'},
+    operators:[{name:'IndiaHikes',price:9500,rating:4.6},{name:'Trek The Himalayas',price:10000,rating:4.5},{name:'Adventure Nation',price:9199,rating:4.4}],
+    reviews:{rating:4.6,count:567,view:5,snow:4}}
+  ,
+  {id:'sandakphu', name:'Sandakphu', state:'West Bengal', days:7, distance:46, maxAlt:3636, difficulty:'Moderate', diff:3, price:12500, season:'Oct–May',
+    months:'bestbestbestbestbestoffoffoffoffbestbestbest',
+    routePoints:[rp('Manebhanjan','1,900 m',60,200,'start',1,1),rp('Tonglu','3,000 m',160,130,'mid',1,1),rp('Kalipokhri','3,200 m',240,110,'mid',1,1),rp('Sandakphu','3,636 m',320,60,'end',1,1)],
+    itinerary:[{day:'D1',desc:'NJP → Manebhanjan.'},{day:'D2',desc:'Manebhanjan → Tonglu.'},{day:'D3',desc:'Tonglu → Kalipokhri.'},{day:'D4',desc:'Kalipokhri → Sandakphu.'},{day:'D5',desc:'Sandakphu → Phalut.'},{day:'D6',desc:'Phalut → Rimbick.'},{day:'D7',desc:'Rimbick → NJP.'}],
+    gear:['Trekking shoes','Down jacket','Fleece','Rain jacket','Sunglasses','Sunscreen','Water bottle','Headlamp','First aid'],
+    safety:{rescue:'West Bengal Police',hospital:'Darjeeling District Hospital',network:'Jio patchy',notes:'View of 4 of 5 highest peaks. Vehicle access available.'},
+    operators:[{name:'IndiaHikes',price:12500,rating:4.6},{name:'Trek The Himalayas',price:13000,rating:4.5},{name:'Adventure Nation',price:11999,rating:4.4}],
+    reviews:{rating:4.6,count:389,view:5,snow:3}}
+  ,
+  {id:'rajmachi', name:'Rajmachi', state:'Maharashtra', days:2, distance:15, maxAlt:826, difficulty:'Easy', diff:1, price:1500, season:'Jun–Feb',
+    months:'offoffoffoffoffbestbestbestbestbestbestbestbest',
+    routePoints:[rp('Lonavala','550 m',60,200,'start',1,1),rp('Rajmachi Fort','826 m',260,60,'end',1,1)],
+    itinerary:[{day:'D1',desc:'Lonavala → Rajmachi village.'},{day:'D2',desc:'Explore forts → descend.'}],
+    gear:['Trekking shoes','Warm layer','Rain jacket','Water bottle','Sunscreen','Headlamp','First aid'],
+    safety:{rescue:'Lonavala Police',hospital:'Lonavala Hospital',network:'Reliable 4G',notes:'Monsoon waterfalls. Great beginner trek near Pune/Mumbai.'},
+    operators:[{name:'Sahyadri Trekkers',price:1500,rating:4.4},{name:'Mumbai Hikers',price:1800,rating:4.5},{name:'Pune Treks',price:1300,rating:4.3}],
+    reviews:{rating:4.4,count:1892,view:4,snow:1}}
+  ,
+  {id:'tarsar-marsar', name:'Tarsar Marsar', state:'Jammu & Kashmir', days:7, distance:48, maxAlt:4000, difficulty:'Moderate–Difficult', diff:4, price:17500, season:'Jul–Sep',
+    months:'offoffoffoffoffoffbestbestbestoffoffoffoff',
+    routePoints:[rp('Aru','2,400 m',60,220,'start',1,1),rp('Lidderwat','3,400 m',140,150,'mid',1,1),rp('Tarsar','3,795 m',220,120,'mid',1,1),rp('Marsar','4,000 m',310,70,'end',1,0)],
+    itinerary:[{day:'D1',desc:'Srinagar → Aru.'},{day:'D2',desc:'Aru → Lidderwat.'},{day:'D3',desc:'Lidderwat → Shekwas.'},{day:'D4',desc:'Shekwas → Tarsar Lake.'},{day:'D5',desc:'Tarsar → Marsar.'},{day:'D6',desc:'Marsar → Lidderwat.'},{day:'D7',desc:'Lidderwat → Aru → Srinagar.'}],
+    gear:['Trekking shoes','Down jacket','Fleece','Rain jacket','Thermal base','Sunglasses','Sunscreen','Water bottle','Headlamp','First aid'],
+    safety:{rescue:'J&K Police + Army',hospital:'Srinagar SMHS',network:'Postpaid only',notes:'Twin alpine lakes trek. Weather can turn fast.'},
+    operators:[{name:'Trek The Himalayas',price:17500,rating:4.8},{name:'IndiaHikes',price:18000,rating:4.7},{name:'Adventure Nation',price:16999,rating:4.5}],
+    reviews:{rating:4.7,count:189,view:5,snow:2}}
+  ,
+  {id:'beas-kund', name:'Beas Kund', state:'Himachal Pradesh', days:4, distance:16, maxAlt:3720, difficulty:'Moderate', diff:2, price:7500, season:'May–Oct',
+    months:'offoffoffoffbestbestbestoffoffbestbestbestoff',
+    routePoints:[rp('Solang','2,400 m',60,220,'start',1,1),rp('Dhundi','2,800 m',140,160,'mid',1,1),rp('Beas Kund','3,720 m',280,60,'end',1,0)],
+    itinerary:[{day:'D1',desc:'Manali → Solang → Dhundi.'},{day:'D2',desc:'Dhundi → Beas Kund → Dhundi.'},{day:'D3',desc:'Dhundi → Solang.'},{day:'D4',desc:'Drive to Manali.'}],
+    gear:['Trekking shoes','Down jacket','Fleece','Rain jacket','Sunglasses','Sunscreen','Water bottle','Headlamp','First aid'],
+    safety:{rescue:'ABVIMAS + HP Police',hospital:'Manali Mission Hospital',network:'Reliable at Manali/Solang',notes:'Source of Beas river. Beginner-friendly.'},
+    operators:[{name:'IndiaHikes',price:7500,rating:4.5},{name:'Trek The Himalayas',price:8000,rating:4.4},{name:'Adventure Nation',price:7199,rating:4.3}],
+    reviews:{rating:4.5,count:432,view:4,snow:3}}
+  ,
+  {id:'kalsubai', name:'Kalsubai', state:'Maharashtra', days:2, distance:12, maxAlt:1646, difficulty:'Easy–Moderate', diff:2, price:1200, season:'Jul–Feb',
+    months:'offoffoffoffoffbestbestbestbestbestbestbestbest',
+    routePoints:[rp('Bari','600 m',60,200,'start',1,1),rp('Kalsubai Peak','1,646 m',260,60,'end',0,0)],
+    itinerary:[{day:'D1',desc:'Mumbai → Bari village → summit.'},{day:'D2',desc:'Summit → descend → Mumbai.'}],
+    gear:['Trekking shoes','Rain jacket','Water bottle','Sunscreen','Headlamp','First aid'],
+    safety:{rescue:'Local villagers',hospital:'Igatpuri PHC',network:'Reliable',notes:'Highest peak in Maharashtra. Iron ladders at summit.'},
+    operators:[{name:'Sahyadri Trekkers',price:1200,rating:4.4},{name:'Mumbai Hikers',price:1500,rating:4.5},{name:'Pune Treks',price:1100,rating:4.3}],
+    reviews:{rating:4.5,count:2341,view:4,snow:1}}
+  ,
+  {id:'kudremukh', name:'Kudremukh', state:'Karnataka', days:2, distance:22, maxAlt:1894, difficulty:'Moderate', diff:3, price:2500, season:'Sep–Feb',
+    months:'offoffoffoffoffoffoffoffbestbestbestbestbest',
+    routePoints:[rp('Mullodi','600 m',60,220,'start',1,1),rp('Kudremukh Peak','1,894 m',260,60,'end',0,0)],
+    itinerary:[{day:'D1',desc:'Bangalore → Mullodi homestay.'},{day:'D2',desc:'Summit → back → Bangalore.'}],
+    gear:['Trekking shoes','Rain jacket','Water bottle','Sunscreen','Headlamp','First aid'],
+    safety:{rescue:'Karnataka Forest Dept',hospital:'Karkala Hospital',network:'No signal on trail',notes:'Forest permit required. Leech socks in monsoon.'},
+    operators:[{name:'Bangalore Trekkers',price:2500,rating:4.4},{name:'Karnataka Hikers',price:2800,rating:4.5},{name:'Western Ghats Treks',price:2200,rating:4.3}],
+    reviews:{rating:4.4,count:892,view:5,snow:1}}
+  ,
+  {id:'kumara-parvatha', name:'Kumara Parvatha', state:'Karnataka', days:2, distance:22, maxAlt:1712, difficulty:'Difficult', diff:4, price:2800, season:'Sep–Feb',
+    months:'offoffoffoffoffoffoffoffbestbestbestbestbest',
+    routePoints:[rp('Kukke','120 m',60,220,'start',1,1),rp('Bhattara Mane','600 m',130,170,'mid',1,1),rp('Kumara Parvatha','1,712 m',260,60,'end',0,0)],
+    itinerary:[{day:'D1',desc:'Kukke → Bhattara Mane → KP summit.'},{day:'D2',desc:'Summit → descend → Kukke.'}],
+    gear:['Trekking shoes','Rain jacket','Water bottle','Sunscreen','Headlamp','First aid','Leech socks'],
+    safety:{rescue:'Karnataka Forest Dept',hospital:'Kukke Subramanya PHC',network:'No signal after Bhattara',notes:'Steepest trek in Karnataka. Leeches in monsoon.'},
+    operators:[{name:'Bangalore Trekkers',price:2800,rating:4.5},{name:'Karnataka Hikers',price:3000,rating:4.4},{name:'Western Ghats Treks',price:2500,rating:4.3}],
+    reviews:{rating:4.5,count:743,view:5,snow:1}}
+  ,
+  {id:'roopkund', name:'Roopkund', state:'Uttarakhand', days:8, distance:53, maxAlt:5029, difficulty:'Difficult', diff:5, price:19500, season:'May–Jun, Sep–Oct',
+    months:'offoffoffoffbestbestoffoffbestbestoffoffoff',
+    routePoints:[rp('Lohajung','2,300 m',50,220,'start',1,1),rp('Ali Bugyal','3,400 m',140,150,'mid',1,1),rp('Bhagwabasa','4,100 m',230,100,'mid',1,1),rp('Roopkund','5,029 m',320,50,'end',0,0)],
+    itinerary:[{day:'D1',desc:'Dehradun → Lohajung.'},{day:'D2',desc:'Lohajung → Didna.'},{day:'D3',desc:'Didna → Ali Bugyal.'},{day:'D4',desc:'Ali Bugyal → Patar Nachauni.'},{day:'D5',desc:'Patar → Bhagwabasa.'},{day:'D6',desc:'Summit day: Roopkund (5,029 m).'},{day:'D7',desc:'Descend to Lohajung.'},{day:'D8',desc:'Lohajung → Dehradun.'}],
+    gear:['Trekking shoes','Down jacket -15°C','Fleece','Thermal base','Rain jacket','Crampons','Ice axe','Sunglasses','Sunscreen','Water bottle','Headlamp','First aid','Diamox'],
+    safety:{rescue:'SDRF + NIM',hospital:'Gwaldam PHC',network:'No signal after Lohajung',notes:'Skeleton lake — one of India\'s most iconic treks.'},
+    operators:[{name:'IndiaHikes',price:19500,rating:4.8},{name:'Trek The Himalayas',price:20000,rating:4.7},{name:'Adventure Nation',price:18999,rating:4.5}],
+    reviews:{rating:4.8,count:312,view:5,snow:5}}
+  ,
+  {id:'stok-kangri', name:'Stok Kangri', state:'Ladakh', days:9, distance:40, maxAlt:6153, difficulty:'Difficult', diff:5, price:32000, season:'Jul–Sep',
+    months:'offoffoffoffoffoffbestbestbestoffoffoffoff',
+    routePoints:[rp('Stok Village','3,500 m',50,220,'start',1,1),rp('Mankorma','4,900 m',130,160,'mid',1,1),rp('Base Camp','5,000 m',210,110,'mid',1,1),rp('Stok Kangri','6,153 m',310,40,'end',0,0)],
+    itinerary:[{day:'D1–D2',desc:'Leh acclimatization.'},{day:'D3',desc:'Leh → Stok Village.'},{day:'D4',desc:'Stok → Mankorma.'},{day:'D5',desc:'Mankorma → Base Camp.'},{day:'D6',desc:'Acclimatization + skills.'},{day:'D7',desc:'Summit day: Stok Kangri (6,153 m).'},{day:'D8',desc:'Descend to Stok Village → Leh.'},{day:'D9',desc:'Buffer.'}],
+    gear:['Trekking shoes -20°C','Down suit','Fleece ×2','Thermal base ×2','Gore-Tex','Crampons','Ice axe','Harness','Sunglasses 4','Sunscreen SPF50','Water bottle','Headlamp','First aid','Diamox'],
+    safety:{rescue:'Ladakh SDRF + Army',hospital:'SNM Hospital Leh',network:'Postpaid only',notes:'High-altitude mountaineering. Prior 5,000 m experience required.'},
+    operators:[{name:'IndiaHikes',price:32000,rating:4.9},{name:'Trek The Himalayas',price:34000,rating:4.8},{name:'Adventure Nation',price:31000,rating:4.6}],
+    reviews:{rating:4.9,count:98,view:5,snow:5}}
+  ,
+  {id:'markha-valley', name:'Markha Valley', state:'Ladakh', days:8, distance:65, maxAlt:5200, difficulty:'Moderate–Difficult', diff:4, price:21500, season:'Jun–Sep',
+    months:'offoffoffoffoffbestbestbestbestoffoffoffoff',
+    routePoints:[rp('Spituk','3,500 m',50,220,'start',1,1),rp('Zingchen','3,400 m',130,170,'mid',1,1),rp('Markha','3,700 m',210,120,'mid',1,1),rp('Nimaling','4,700 m',270,80,'mid',1,1),rp('Shang Sumdo','3,700 m',340,160,'end',1,1)],
+    itinerary:[{day:'D1–D2',desc:'Leh acclimatization.'},{day:'D3',desc:'Spituk → Zingchen.'},{day:'D4',desc:'Zingchen → Yurutse.'},{day:'D5',desc:'Yurutse → Markha.'},{day:'D6',desc:'Markha → Thachungtse.'},{day:'D7',desc:'Thachungtse → Nimaling.'},{day:'D8',desc:'Nimaling → Kongmaru La → Shang Sumdo.'}],
+    gear:['Trekking shoes','Down jacket','Fleece','Thermal base','Rain jacket','Sunglasses','Sunscreen SPF50','Water bottle','Headlamp','First aid','Diamox','Cash (no ATMs)'],
+    safety:{rescue:'Ladakh SDRF + Army',hospital:'SNM Hospital Leh',network:'Postpaid only',notes:'Remote homestays. Carry cash. Best homestay trek in India.'},
+    operators:[{name:'Trek The Himalayas',price:21500,rating:4.8},{name:'IndiaHikes',price:22000,rating:4.7},{name:'Adventure Nation',price:20999,rating:4.5}],
+    reviews:{rating:4.8,count:167,view:5,snow:2}}
+  ,
+  {id:'bhrigu-lake', name:'Bhrigu Lake', state:'Himachal Pradesh', days:4, distance:20, maxAlt:4300, difficulty:'Moderate', diff:3, price:8500, season:'May–Oct',
+    months:'offoffoffoffbestbestbestoffoffbestbestbestoff',
+    routePoints:[rp('Gulaba','2,500 m',60,220,'start',1,1),rp('Rola Kholi','3,800 m',150,150,'mid',1,1),rp('Bhrigu Lake','4,300 m',280,60,'end',1,0)],
+    itinerary:[{day:'D1',desc:'Manali → Gulaba → Rola Kholi.'},{day:'D2',desc:'Rola Kholi → Bhrigu Lake → Rola Kholi.'},{day:'D3',desc:'Rola Kholi → Gulaba.'},{day:'D4',desc:'Drive to Manali.'}],
+    gear:['Trekking shoes','Down jacket','Fleece','Rain jacket','Sunglasses','Sunscreen','Water bottle','Headlamp','First aid'],
+    safety:{rescue:'ABVIMAS',hospital:'Manali Mission Hospital',network:'Reliable at Manali',notes:'Alpine lake at 4,300 m. Short but high.'},
+    operators:[{name:'IndiaHikes',price:8500,rating:4.6},{name:'Trek The Himalayas',price:9000,rating:4.5},{name:'Adventure Nation',price:8199,rating:4.4}],
+    reviews:{rating:4.6,count:534,view:5,snow:4}}
+  ,
+  {id:'prashar-lake', name:'Prashar Lake', state:'Himachal Pradesh', days:2, distance:14, maxAlt:2730, difficulty:'Easy–Moderate', diff:2, price:3500, season:'All year',
+    months:'bestbestbestbestbestbestoffoffbestbestbestbest',
+    routePoints:[rp('Baggi','1,800 m',60,200,'start',1,1),rp('Prashar Lake','2,730 m',260,60,'end',1,1)],
+    itinerary:[{day:'D1',desc:'Mandi → Baggi → Prashar Lake.'},{day:'D2',desc:'Lake → descend → Mandi.'}],
+    gear:['Trekking shoes','Warm layer','Rain jacket','Water bottle','Sunscreen','Headlamp','First aid'],
+    safety:{rescue:'HP Police',hospital:'Mandi Zonal Hospital',network:'Reliable',notes:'Floating island lake. 13th-century temple.'},
+    operators:[{name:'Himalayan Explorers',price:3500,rating:4.4},{name:'IndiaHikes',price:3800,rating:4.5},{name:'Adventure Nation',price:3299,rating:4.3}],
+    reviews:{rating:4.5,count:678,view:4,snow:3}}
+];
+
+// derive elevation from routePoints
+TREKS.forEach(t=>{
+  t.elevation = t.routePoints.map((p,i)=>({day:i+1, alt:parseInt(p.alt.replace(/[^\d]/g,''))}));
+  t.monthsArr = t.months.split(/(?=best|ok|off)/).length > 12 ? (t.months.match(/best|ok|off/g)||[]) : [];
+  if(!t.monthsArr.length){ t.monthsArr = (t.months.match(/best|ok|off/g)||[]); }
+});
+
+/* ============================================================
+   STATE
+============================================================ */
+let activeTrekId = TREKS[0].id;
+let saved = JSON.parse(localStorage.getItem('trek_saved')||'[]');
+let soundOn = JSON.parse(localStorage.getItem('trek_sound')||'true');
+let theme = localStorage.getItem('trek_theme')||'dark';
+let audioCtx = null;
+
+/* ============================================================
+   INIT
+============================================================ */
+document.addEventListener('DOMContentLoaded', ()=>{
+  if(theme==='light') document.body.classList.add('light-mode');
+  updateThemeIcon();
+  updateSoundIcon();
+  buildFilterStates();
+  renderTrekGrid();
+  renderDetail(activeTrekId);
+  populateAllSelects();
+  renderCompare();
+  renderCalendar();
+  renderGear();
+  renderSafety();
+  renderOperators();
+  renderSaved();
+  updateTelemetry();
+  updateSavedCount();
+  // deep link
+  if(location.hash){
+    const h = location.hash.slice(1);
+    if(document.getElementById('panel-'+h)) switchTab(h);
+    else if(TREKS.find(t=>t.id===h)){ activeTrekId=h; switchTab('detail'); }
+  }
+  window.addEventListener('hashchange', ()=>{
+    const h = location.hash.slice(1);
+    if(h && document.getElementById('panel-'+h)) switchTab(h, false);
+  });
+});
+
+/* ============================================================
+   SOUND
+============================================================ */
+function toggleSound(){
+  soundOn = !soundOn;
+  localStorage.setItem('trek_sound', JSON.stringify(soundOn));
+  updateSoundIcon();
+  if(soundOn) playClick();
+}
+function updateSoundIcon(){
+  const b = document.getElementById('soundBtn');
+  b.innerHTML = soundOn ? '<i class="fas fa-volume-high"></i>' : '<i class="fas fa-volume-xmark"></i>';
+  b.classList.toggle('active', !soundOn);
+}
+function playClick(){
+  if(!soundOn) return;
+  try{
+    if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+    const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+    o.frequency.value = 900; o.type='sine';
+    g.gain.setValueAtTime(.04, audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(.001, audioCtx.currentTime + .06);
+    o.connect(g).connect(audioCtx.destination);
+    o.start(); o.stop(audioCtx.currentTime + .07);
+  }catch(e){}
+}
+
+/* ============================================================
+   THEME
+============================================================ */
+function toggleTheme(){
+  theme = theme==='dark'?'light':'dark';
+  localStorage.setItem('trek_theme', theme);
+  document.body.classList.toggle('light-mode', theme==='light');
+  updateThemeIcon();
+  playClick();
+}
+function updateThemeIcon(){
+  const b = document.getElementById('themeBtn');
+  b.innerHTML = theme==='dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+  b.classList.toggle('active', theme==='light');
+}
+
+/* ============================================================
+   TAB SWITCH
+============================================================ */
+function switchTab(tabId, updateHash=true){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn, .bottom-tab').forEach(b=>b.classList.remove('active'));
+  const panel = document.getElementById('panel-'+tabId);
+  if(panel) panel.classList.add('active');
+  document.querySelectorAll(`[data-tab="${tabId}"]`).forEach(b=>b.classList.add('active'));
+  if(updateHash){ history.replaceState(null,'','#'+tabId); }
+  playClick();
+  window.scrollTo({top:0, behavior:'smooth'});
+  // refresh panel-specific rendering
+  if(tabId==='detail') renderDetail(activeTrekId);
+  if(tabId==='plan'){ populateAllSelects(); updatePlan(); }
+  if(tabId==='compare') renderCompare();
+  if(tabId==='calendar') renderCalendar();
+  if(tabId==='gear') renderGear();
+  if(tabId==='safety') renderSafety();
+  if(tabId==='operators') renderOperators();
+  if(tabId==='saved') renderSaved();
+}
+
+/* ============================================================
+   HELPERS
+============================================================ */
+function diffClass(t){
+  if(t.diff<=2) return 'd1';
+  if(t.diff===3) return 'd3';
+  return 'd5';
+}
+function diffColor(n){
+  return ['','#00e676','#8bc34a','#ffc107','#ff7043','#e10600'][n]||'#e10600';
+}
+function parseAlt(s){return parseInt(s.replace(/[^\d]/g,''))||0;}
+function tById(id){return TREKS.find(x=>x.id===id);}
+
+/* ============================================================
+   TELEMETRY
+============================================================ */
+function updateTelemetry(){
+  const totalKm = TREKS.reduce((s,t)=>s+t.distance,0);
+  const maxAlt = Math.max(...TREKS.map(t=>t.maxAlt));
+  const states = new Set(TREKS.map(t=>t.state)).size;
+  const avgCost = Math.round(TREKS.reduce((s,t)=>s+t.price,0)/TREKS.length);
+  document.getElementById('tel-routes').textContent = TREKS.length;
+  document.getElementById('tel-km').textContent = totalKm+' km';
+  document.getElementById('tel-alt').textContent = maxAlt+' m';
+  document.getElementById('tel-states').textContent = states;
+  document.getElementById('tel-cost').textContent = '₹'+(avgCost/1000).toFixed(1)+'k';
+  document.getElementById('tel-saved').textContent = saved.length;
+}
+
+/* ============================================================
+   FILTERS
+============================================================ */
+function buildFilterStates(){
+  const sel = document.getElementById('filterState');
+  const states = [...new Set(TREKS.map(t=>t.state))].sort();
+  sel.innerHTML = '<option value="">All States</option>' + states.map(s=>`<option value="${s}">${s}</option>`).join('');
+}
+
+/* ============================================================
+   RENDER TREK GRID
+============================================================ */
+function renderTrekGrid(){
+  const grid = document.getElementById('trekGrid');
+  if(!grid) return;
+  const q = (document.getElementById('filterSearch')?.value||'').toLowerCase();
+  const state = document.getElementById('filterState')?.value||'';
+  const diff = document.getElementById('filterDiff')?.value||'';
+  const daysRange = document.getElementById('filterDays')?.value||'';
+  const sort = document.getElementById('filterSort')?.value||'name';
+
+  let list = TREKS.filter(t=>{
+    if(q && !(t.name.toLowerCase().includes(q)||t.state.toLowerCase().includes(q))) return false;
+    if(state && t.state!==state) return false;
+    if(diff && t.diff!==parseInt(diff)) return false;
+    if(daysRange){
+      const [a,b] = daysRange.split('-').map(Number);
+      if(t.days<a||t.days>b) return false;
+    }
+    return true;
+  });
+
+  // sort
+  list.sort((a,b)=>{
+    if(sort==='price-asc') return a.price-b.price;
+    if(sort==='price-desc') return b.price-a.price;
+    if(sort==='alt') return b.maxAlt-a.maxAlt;
+    if(sort==='days') return a.days-b.days;
+    return a.name.localeCompare(b.name);
+  });
+
+  document.getElementById('gridCount').textContent = list.length + ' Routes';
+  grid.innerHTML = list.map((t,i)=>trekCardHTML(t,i)).join('');
+}
+
+function trekCardHTML(t, idx=0){
+  const isSaved = saved.includes(t.id);
+  return `
+    <div class="trek-card" style="animation-delay:${Math.min(idx*30,400)}ms" onclick="openTrekDetail('${t.id}')">
+      <div class="card-head">
+        <div class="trek-name">${t.name}</div>
+        <button class="wish-btn ${isSaved?'active':''}" onclick="event.stopPropagation();toggleWish('${t.id}')">
+          <i class="fas fa-heart"></i>
+        </button>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;gap:6px">
+        <span class="card-state">${t.state}</span>
+        <span class="rating-mini"><i class="fas fa-star"></i> ${t.reviews.rating.toFixed(1)} (${t.reviews.count})</span>
+      </div>
+      <div class="card-stats">
+        <div class="stat"><i class="fas fa-calendar-day"></i>${t.days} Days</div>
+        <div class="stat"><i class="fas fa-route"></i>${t.distance} km</div>
+        <div class="stat"><i class="fas fa-mountain"></i>${t.maxAlt} m</div>
+        <div class="stat"><i class="fas fa-sun"></i>${t.season.split(',')[0]}</div>
+      </div>
+      <div class="card-foot">
+        <div class="price-tag">₹${t.price.toLocaleString('en-IN')}<small>/person</small></div>
+        <div class="difficulty ${diffClass(t)}">${'★'.repeat(t.diff)} ${t.difficulty}</div>
+      </div>
+    </div>
+  `;
+}
+
+function toggleWish(id){
+  const i = saved.indexOf(id);
+  if(i>=0){ saved.splice(i,1); showToast('Removed from wishlist'); }
+  else { saved.push(id); showToast('Saved to wishlist ♥'); }
+  localStorage.setItem('trek_saved', JSON.stringify(saved));
+  updateSavedCount();
+  updateTelemetry();
+  renderTrekGrid();
+  renderSaved();
+  playClick();
+}
+function updateSavedCount(){
+  document.getElementById('tel-saved').textContent = saved.length;
+}
+
+/* ============================================================
+   OPEN DETAIL
+============================================================ */
+function openTrekDetail(id){
+  activeTrekId = id;
+  switchTab('detail');
+}
+
+/* ============================================================
+   RENDER DETAIL
+============================================================ */
+function renderDetail(id){
+  const t = tById(id);
+  if(!t) return;
+  document.getElementById('detailBadge').textContent = t.name+' · '+t.state;
+
+  // map
+  document.getElementById('mapWrapper').innerHTML = buildRouteMap(t);
+  document.getElementById('elevChart').innerHTML = buildElevationChart(t);
+
+  // specs
+  document.getElementById('detailSpecs').innerHTML = `
+    <div class="summary-row"><span class="label"><i class="fas fa-calendar-day"></i>Duration</span><span class="value">${t.days} Days</span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-route"></i>Distance</span><span class="value">${t.distance} km</span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-mountain"></i>Max Altitude</span><span class="value">${t.maxAlt} m</span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-sun"></i>Best Season</span><span class="value">${t.season}</span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-signal"></i>Difficulty</span><span class="value"><span class="difficulty ${diffClass(t)}">${'★'.repeat(t.diff)} ${t.difficulty}</span></span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-star"></i>Rating</span><span class="value"><i class="fas fa-star" style="color:var(--amber);font-size:.7rem"></i> ${t.reviews.rating} (${t.reviews.count})</span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-tag"></i>Base Price</span><span class="value accent">₹${t.price.toLocaleString('en-IN')}</span></div>
+  `;
+
+  // itinerary
+  document.getElementById('detailItinerary').innerHTML = t.itinerary.map(d=>`
+    <li><span class="day-badge">${d.day}</span><span>${d.desc}</span></li>
+  `).join('');
+
+  // gear
+  document.getElementById('detailGear').innerHTML = t.gear.map((g,i)=>`
+    <li class="gear-item" onclick="this.classList.toggle('checked');this.querySelector('input').checked=this.classList.contains('checked')">
+      <input type="checkbox" onclick="event.stopPropagation();this.parentElement.classList.toggle('checked')">
+      <span>${g}</span>
+    </li>
+  `).join('');
+
+  // safety
+  const s = t.safety;
+  document.getElementById('detailSafety').innerHTML = `
+    <div class="safety-card"><b>Rescue</b>${s.rescue}</div>
+    <div class="safety-card"><b>Nearest Hospital</b>${s.hospital}</div>
+    <div class="safety-card"><b>Network Coverage</b>${s.network}</div>
+    <div class="safety-card"><b>Notes</b>${s.notes}</div>
+  `;
+
+  // operators
+  document.getElementById('detailOperators').innerHTML = t.operators.map(o=>`
+    <li class="operator-card">
+      <div><div class="op-name">${o.name}</div><div class="op-meta"><i class="fas fa-star" style="color:var(--amber)"></i> ${o.rating}</div></div>
+      <div class="op-price">₹${o.price.toLocaleString('en-IN')}</div>
+    </li>
+  `).join('');
+}
+
+/* ============================================================
+   SVG MAP
+============================================================ */
+function buildRouteMap(t){
+  const W=400, H=280;
+  const pts = t.routePoints;
+  const dayColors = ['#00e676','#8bc34a','#ffc107','#ff7043','#e10600','#9b59b6','#f39c12','#3498db'];
+
+  // build per-segment lines
+  let segs = '';
+  for(let i=0;i<pts.length-1;i++){
+    const a=pts[i], b=pts[i+1];
+    segs += `<line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" stroke="${dayColors[i%dayColors.length]}" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="800" stroke-dashoffset="800" class="seg-anim" style="animation:drawSeg 1s ease ${i*0.3}s forwards;filter:drop-shadow(0 0 3px ${dayColors[i%dayColors.length]})"/>`;
+  }
+
+  const dots = pts.map((p,i)=>{
+    const cls = p.type==='start'?'start':p.type==='end'?'end':'mid';
+    let extras = '';
+    if(p.water) extras += `<text x="${p.x-4}" y="${p.y-7}" fill="#3498db" font-size="8" font-family="sans-serif">💧</text>`;
+    if(p.camp) extras += `<text x="${p.x+5}" y="${p.y-7}" fill="#ffc107" font-size="8" font-family="sans-serif">⛺</text>`;
+    return `
+      <circle cx="${p.x}" cy="${p.y}" r="5" class="map-dot ${cls}">
+        <title>${p.label} — ${p.alt}</title>
+      </circle>
+      <text x="${p.x+9}" y="${p.y-3}" class="map-label">${p.label}</text>
+      <text x="${p.x+9}" y="${p.y+8}" class="map-label-alt">${p.alt}</text>
+      ${extras}
+    `;
+  }).join('');
+
+  const legend = dayColors.slice(0,pts.length-1).map((c,i)=>`
+    <rect x="${10+70*(i%5)}" y="${250+18*Math.floor(i/5)}" width="10" height="10" fill="${c}"/>
+    <text x="${24+70*(i%5)}" y="${259+18*Math.floor(i/5)}" class="map-label-alt">D${i+1}</text>
+  `).join('');
+
+  return `
+    <svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="grid-${t.id}" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/>
+        </pattern>
+      </defs>
+      <rect width="${W}" height="${H}" fill="url(#grid-${t.id})"/>
+      <style>
+        @keyframes drawSeg{to{stroke-dashoffset:0}}
+        @keyframes fadeIn{to{opacity:1}}
+      </style>
+      ${segs}
+      ${dots}
+      ${legend}
+    </svg>
+    <div class="compass-mini"><i class="fas fa-location-arrow"></i></div>
+  `;
+}
+
+function buildElevationChart(t){
+  const W=400, H=100, pad=14;
+  const elevs = t.elevation;
+  const maxA = Math.max(...elevs.map(e=>e.alt));
+  const minA = Math.min(...elevs.map(e=>e.alt));
+  const range = Math.max(maxA-minA, 200);
+
+  const px = elevs.map((e,i)=> pad + (i/(elevs.length-1||1))*(W-pad*2));
+  const py = elevs.map(e=> H-pad - ((e.alt-minA)/range)*(H-pad*2));
+
+  let line = px.map((x,i)=> `${i===0?'M':'L'}${x},${py[i]}`).join(' ');
+  let area = line + ` L${px[px.length-1]},${H-pad} L${px[0]},${H-pad} Z`;
+
+  const markers = px.map((x,i)=>`
+    <circle cx="${x}" cy="${py[i]}" r="3" fill="#e10600" stroke="#fff" stroke-width="1"/>
+    <text x="${x}" y="${py[i]-6}" class="map-label-alt" text-anchor="middle">${elevs[i].alt}</text>
+  `).join('');
+
+  return `
+    <svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="elevGrad-${t.id}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#e10600" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#e10600" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path d="${area}" fill="url(#elevGrad-${t.id})"/>
+      <path d="${line}" fill="none" stroke="#e10600" stroke-width="2"/>
+      ${markers}
+      <text x="6" y="12" class="map-label-alt">ALTITUDE PROFILE</text>
+    </svg>
+  `;
+}
+
+/* ============================================================
+   PLAN
+============================================================ */
+function populateAllSelects(){
+  const opts = TREKS.map(t=>`<option value="${t.id}">${t.name} — ${t.state}</option>`).join('');
+  ['planTrekSelect','gearTrekSelect','safetyTrekSelect','opTrekSelect','cmpA','cmpB'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(!el) return;
+    const prev = el.value;
+    el.innerHTML = opts;
+    if(prev && TREKS.find(t=>t.id===prev)) el.value = prev;
+    else if(id.startsWith('cmp')) el.value = id==='cmpA'?TREKS[0].id:TREKS[1].id;
+    else el.value = activeTrekId;
+  });
+}
+
+function updatePlan(fromBtn){
+  const trekId = document.getElementById('planTrekSelect').value;
+  const t = tById(trekId);
+  if(!t) return;
+  const groupSize = parseInt(document.getElementById('planGroupSize').value)||1;
+  const season = document.getElementById('planSeason').value;
+  const transport = document.getElementById('planTransport').value;
+  const gearCost = parseInt(document.getElementById('planGear').value)||0;
+  const insurance = parseInt(document.getElementById('planInsurance').value)||0;
+
+  // season modifier
+  let seasonMod = 1, seasonLabel = 'Peak';
+  if(season==='shoulder'){ seasonMod=.9; seasonLabel='Shoulder'; }
+  if(season==='off'){ seasonMod=.78; seasonLabel='Off'; }
+
+  // transport cost
+  let transportCost = 0, transportLabel = '';
+  if(transport==='shared'){ transportCost=2500; transportLabel='Shared Vehicle'; }
+  if(transport==='private'){ transportCost=4500; transportLabel='Private Vehicle'; }
+  if(transport==='public'){ transportCost=1500; transportLabel='Public Bus/Train'; }
+
+  const baseFee = Math.round(t.price*seasonMod);
+  const perPerson = baseFee + transportCost + gearCost + insurance;
+  const groupTotal = perPerson * groupSize;
+  const totalDays = t.days + 2;
+  const costPerDay = Math.round(perPerson/totalDays);
+  const costPerKm = Math.round(perPerson/t.distance);
+  const buffer = Math.round(groupTotal*0.12);
+  const grandTotal = groupTotal + buffer;
+
+  document.getElementById('planSummary').innerHTML = `
+    <div class="summary-row"><span class="label"><i class="fas fa-mountain"></i>Trek</span><span class="value">${t.name}</span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-users"></i>Group</span><span class="value">${groupSize} pax</span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-sun"></i>Season</span><span class="value">${seasonLabel}</span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-bus"></i>Transport</span><span class="value">₹${transportCost.toLocaleString('en-IN')}</span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-suitcase-rolling"></i>Gear Rental</span><span class="value">₹${gearCost.toLocaleString('en-IN')}</span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-shield-halved"></i>Insurance</span><span class="value">₹${insurance.toLocaleString('en-IN')}</span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-tag"></i>Trek Fee</span><span class="value">₹${baseFee.toLocaleString('en-IN')}</span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-user"></i>Per Person</span><span class="value accent">₹${perPerson.toLocaleString('en-IN')}</span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-clock"></i>Total Days</span><span class="value">${totalDays} <small class="text-muted">(incl. travel)</small></span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-calculator"></i>Group Total</span><span class="value">₹${groupTotal.toLocaleString('en-IN')}</span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-plus"></i>12% Buffer</span><span class="value">₹${buffer.toLocaleString('en-IN')}</span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-rupee-sign"></i>Grand Total</span><span class="value accent" style="font-size:1.1rem">₹${grandTotal.toLocaleString('en-IN')}</span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-chart-line"></i>Cost/Day</span><span class="value">₹${costPerDay.toLocaleString('en-IN')}</span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-road"></i>Cost/KM</span><span class="value">₹${costPerKm.toLocaleString('en-IN')}</span></div>
+  `;
+
+  // speedometer for altitude
+  document.getElementById('planSpeed').innerHTML = buildSpeedometer(t.maxAlt);
+  if(fromBtn) showToast('Plan recalculated ✓');
+}
+
+function buildSpeedometer(alt){
+  const W=200, H=120, cx=100, cy=100, r=75;
+  const maxAlt = 6500;
+  const pct = Math.min(alt/maxAlt, 1);
+  const angle = -180 + pct*180;
+  const rad = angle*Math.PI/180;
+  const nx = cx + r*Math.cos(rad), ny = cy + r*Math.sin(rad);
+  const arcLen = Math.PI*r;
+  const dash = pct*arcLen;
+
+  return `
+    <svg viewBox="0 0 ${W} ${H}" width="200" height="120" xmlns="http://www.w3.org/2000/svg">
+      <path d="M${cx-r},${cy} A${r},${r} 0 0 1 ${cx+r},${cy}" fill="none" stroke="#2a2a35" stroke-width="10" stroke-linecap="round"/>
+      <path d="M${cx-r},${cy} A${r},${r} 0 0 1 ${cx+r},${cy}" fill="none" stroke="url(#speedGrad)" stroke-width="10" stroke-linecap="round" stroke-dasharray="${dash} ${arcLen}"/>
+      <defs>
+        <linearGradient id="speedGrad" x1="0" x2="1">
+          <stop offset="0%" stop-color="#00e676"/>
+          <stop offset="50%" stop-color="#ffc107"/>
+          <stop offset="100%" stop-color="#e10600"/>
+        </linearGradient>
+      </defs>
+      <line x1="${cx}" y1="${cy}" x2="${nx}" y2="${ny}" stroke="#f0f0f5" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="${cx}" cy="${cy}" r="6" fill="#e10600"/>
+      <text x="${cx}" y="${cy-18}" text-anchor="middle" fill="#f0f0f5" font-family="Titillium Web,sans-serif" font-weight="700" font-size="16">${alt} m</text>
+      <text x="${cx}" y="${cy+18}" text-anchor="middle" fill="#7a7a8a" font-family="Rajdhani,sans-serif" font-size="9" letter-spacing="1.5">MAX ALTITUDE</text>
+      <text x="24" y="${cy-4}" fill="#7a7a8a" font-family="Rajdhani,sans-serif" font-size="8">0</text>
+      <text x="${W-26}" y="${cy-4}" fill="#7a7a8a" font-family="Rajdhani,sans-serif" font-size="8">6.5k</text>
+    </svg>
+  `;
+}
+
+/* ============================================================
+   COMPARE
+============================================================ */
+function renderCompare(){
+  const a = tById(document.getElementById('cmpA').value);
+  const b = tById(document.getElementById('cmpB').value);
+  if(!a||!b) return;
+
+  const rows = [
+    ['Trek', a.name, b.name, ''],
+    ['State', a.state, b.state, ''],
+    ['Days', a.days+' days', b.days+' days', a.days<b.days?'A':b.days<a.days?'B':''],
+    ['Distance', a.distance+' km', b.distance+' km', a.distance<b.distance?'A':b.distance<a.distance?'B':''],
+    ['Max Altitude', a.maxAlt+' m', b.maxAlt+' m', a.maxAlt>b.maxAlt?'A':b.maxAlt>a.maxAlt?'B':''],
+    ['Difficulty', '★'.repeat(a.diff)+' '+a.difficulty, '★'.repeat(b.diff)+' '+b.difficulty, a.diff<b.diff?'A':b.diff<a.diff?'B':''],
+    ['Price', '₹'+a.price.toLocaleString('en-IN'), '₹'+b.price.toLocaleString('en-IN'), a.price<b.price?'A':b.price<a.price?'B':''],
+    ['Season', a.season, b.season, ''],
+    ['Rating', '★ '+a.reviews.rating+' ('+a.reviews.count+')', '★ '+b.reviews.rating+' ('+b.reviews.count+')', a.reviews.rating>b.reviews.rating?'A':b.reviews.rating>a.reviews.rating?'B':''],
+    ['Cost/Day', '₹'+Math.round(a.price/a.days).toLocaleString('en-IN'), '₹'+Math.round(b.price/b.days).toLocaleString('en-IN'), a.price/a.days<b.price/b.days?'A':b.price/b.days<a.price/a.days?'B':''],
+    ['Cost/KM', '₹'+Math.round(a.price/a.distance).toLocaleString('en-IN'), '₹'+Math.round(b.price/b.distance).toLocaleString('en-IN'), a.price/a.distance<b.price/b.distance?'A':b.price/b.distance<a.price/a.distance?'B':'']
+  ];
+
+  document.getElementById('compareOutput').innerHTML = `
+    <div class="compare-table">
+      <div class="compare-row header"><div>Trek A</div><div style="text-align:center">${a.name}</div><div style="text-align:center">${b.name}</div></div>
+      ${rows.map(([l,v1,v2,win])=>`
+        <div class="compare-row">
+          <div class="lbl"><i class="fas fa-circle"></i>${l}</div>
+          <div class="v ${win==='A'?'win':''}">${v1}</div>
+          <div class="v ${win==='B'?'win':''}">${v2}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+/* ============================================================
+   CALENDAR
+============================================================ */
+function renderCalendar(){
+  const tbl = document.getElementById('calTable');
+  if(!tbl) return;
+  let html = '<thead><tr><th style="text-align:left">Trek</th>';
+  MONTHS.forEach((m,i)=> html+=`<th>${m}</th>`);
+  html += '</tr></thead><tbody>';
+  TREKS.forEach(t=>{
+    html += `<tr><td class="trek-name-cell">${t.name}</td>`;
+    const months = (t.months.match(/best|ok|off/g)||[]);
+    for(let i=0;i<12;i++){
+      const m = months[i]||'off';
+      const cls = m==='best'?'cal-best':m==='ok'?'cal-ok':'cal-off';
+      const icon = m==='best'?'●':m==='ok'?'◐':'·';
+      html += `<td class="cal-cell ${cls}">${icon}</td>`;
+    }
+    html += '</tr>';
+  });
+  html += '</tbody>';
+  tbl.innerHTML = html;
+}
+
+/* ============================================================
+   GEAR
+============================================================ */
+function renderGear(){
+  const t = tById(document.getElementById('gearTrekSelect').value);
+  if(!t) return;
+  document.getElementById('gearStats').innerHTML = `
+    <div class="summary-row"><span class="label"><i class="fas fa-mountain"></i>Trek</span><span class="value">${t.name}</span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-tasks"></i>Items</span><span class="value">${t.gear.length}</span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-thermometer"></i>Min Temp</span><span class="value">${t.maxAlt>4500?'-15°C':t.maxAlt>3500?'-8°C':'-3°C'}</span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-sun"></i>Season</span><span class="value">${t.season}</span></div>
+    <button class="btn-secondary" style="margin-top:10px;width:100%" onclick="resetGear()"><i class="fas fa-rotate-left"></i> Reset</button>
+  `;
+  document.getElementById('gearListFull').innerHTML = t.gear.map(g=>`
+    <li class="gear-item" onclick="this.classList.toggle('checked')">
+      <input type="checkbox" onclick="event.stopPropagation();this.parentElement.classList.toggle('checked')">
+      <span>${g}</span>
+    </li>
+  `).join('');
+}
+function resetGear(){
+  document.querySelectorAll('#gearListFull .gear-item').forEach(li=>{
+    li.classList.remove('checked');
+    const cb = li.querySelector('input'); if(cb) cb.checked=false;
+  });
+  showToast('Checklist reset');
+}
+
+/* ============================================================
+   SAFETY
+============================================================ */
+function renderSafety(){
+  const t = tById(document.getElementById('safetyTrekSelect').value);
+  if(!t) return;
+  const s = t.safety;
+  document.getElementById('safetyTrekInfo').innerHTML = `
+    <div class="safety-card"><b>Trek</b>${t.name} — ${t.state}</div>
+    <div class="safety-card"><b>Rescue</b>${s.rescue}</div>
+    <div class="safety-card"><b>Hospital</b>${s.hospital}</div>
+    <div class="safety-card"><b>Network</b>${s.network}</div>
+    <div class="safety-card"><b>Notes</b>${s.notes}</div>
+    <div class="safety-card" style="border-left-color:var(--amber)"><b>Altitude Risk</b>${t.maxAlt>4500?'HIGH — acclimatize carefully':t.maxAlt>3500?'MEDIUM — go slow above 3,500 m':'LOW — but always watch for AMS'}</div>
+  `;
+}
+
+/* ============================================================
+   OPERATORS
+============================================================ */
+function renderOperators(){
+  const t = tById(document.getElementById('opTrekSelect').value);
+  if(!t) return;
+  document.getElementById('opTrekInfo').innerHTML = `
+    <div class="summary-row"><span class="label"><i class="fas fa-mountain"></i>Trek</span><span class="value">${t.name}</span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-rupee-sign"></i>Base Price</span><span class="value accent">₹${t.price.toLocaleString('en-IN')}</span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-star"></i>Rating</span><span class="value">${t.reviews.rating} / 5</span></div>
+    <div class="summary-row"><span class="label"><i class="fas fa-users"></i>Reviews</span><span class="value">${t.reviews.count}</span></div>
+  `;
+  document.getElementById('opList').innerHTML = t.operators.map(o=>`
+    <li class="operator-card">
+      <div>
+        <div class="op-name">${o.name}</div>
+        <div class="op-meta"><i class="fas fa-star" style="color:var(--amber)"></i> ${o.rating} · Verified</div>
+      </div>
+      <div style="text-align:right">
+        <div class="op-price">₹${o.price.toLocaleString('en-IN')}</div>
+        <button class="btn-secondary" style="padding:4px 12px;font-size:.6rem;margin-top:4px" onclick="showToast('Contact request sent to ${o.name}')">Enquire</button>
+      </div>
+    </li>
+  `).join('');
+}
+
+/* ============================================================
+   SAVED
+============================================================ */
+function renderSaved(){
+  const grid = document.getElementById('savedGrid');
+  const empty = document.getElementById('savedEmpty');
+  document.getElementById('savedCount').textContent = saved.length + ' saved';
+  if(!saved.length){
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  grid.innerHTML = saved.map((id,i)=>{
+    const t = tById(id);
+    if(!t) return '';
+    return trekCardHTML(t,i);
+  }).join('');
+}
+
+/* ============================================================
+   TOAST / SHARE
+============================================================ */
+function showToast(msg){
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(el._t);
+  el._t = setTimeout(()=>el.classList.remove('show'), 2200);
+}
+function shareCard(){
+  const url = location.origin+location.pathname+'#'+activeTrekId;
+  if(navigator.share){
+    navigator.share({title:'TREK//INDIA', text:'Check out this trek!', url}).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(url).then(()=>showToast('Link copied ✓')).catch(()=>showToast('Share: '+url));
+  }
+}
+
+/* ============================================================
+   GLOBAL EXPORTS
+============================================================ */
+window.switchTab = switchTab;
+window.openTrekDetail = openTrekDetail;
+window.toggleWish = toggleWish;
+window.updatePlan = updatePlan;
+window.renderCompare = renderCompare;
+window.renderGear = renderGear;
+window.renderSafety = renderSafety;
+window.renderOperators = renderOperators;
+window.resetGear = resetGear;
+window.toggleTheme = toggleTheme;
+window.toggleSound = toggleSound;
+window.shareCard = shareCard;
+window.renderTrekGrid = renderTrekGrid;
+</script>
+
+</body>
+                                                                                     </html>
